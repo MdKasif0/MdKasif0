@@ -81,7 +81,7 @@ const kasif = {
   <img src="https://github-readme-stats.vercel.app/api/pin/?username=MdKasif0&repo=Barakah&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=6CE5F7&icon_color=6CE5F7" />
 </a>
 
-<a href="https://github.com/MdKasif0/ByteChat">
+<a href="https://github.com/MdKasif0/ByteChat-v3">
   <img src="https://github-readme-stats.vercel.app/api/pin/?username=MdKasif0&repo=ByteChat&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=6CE5F7&icon_color=6CE5F7" />
 </a>
 
