@@ -80,11 +80,11 @@ const kasif = {
 <td width="50%" valign="top">
 
 ### 🚀 Barakah
-**AI-Powered Web Application**
+**Islamic lifestyle Web Application**
 
-A cutting-edge project showcasing seamless AI integration in web applications.
+Barakah is a premium Islamic lifestyle web app offering Quran reading, Sunnah guidance, Prayer times, Duas, Tasbih, Meditation, and Recitations – beautifully designed for a modern spiritual experience.
 
-🔗 **Tech Stack:** React, Firebase, AI/ML  
+🔗 **Tech Stack:** React, Firebase Studio, Tanzil.net
 ⭐ **Status:** Active Development
 
 [View Project →](https://github.com/MdKasif0/Barakah)
@@ -95,7 +95,7 @@ A cutting-edge project showcasing seamless AI integration in web applications.
 ### 💬 ByteChat
 **Real-time Chat Platform**
 
-Modern chat application with AI capabilities and real-time features.
+Modern chat application with AI capabilities and real-time features. Messages, Images, Voice and Video calls are end to end Encrypted using WebRTC Data Channels
 
 🔗 **Tech Stack:** Next.js, Firebase, OpenAI  
 ⭐ **Status:** Active Development
