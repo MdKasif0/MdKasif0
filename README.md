@@ -75,17 +75,36 @@ const kasif = {
 
 ## 🌟 Featured Projects
 
-<div align="center">
+<table align="center">
+<tr>
+<td width="50%" valign="top">
 
-<a href="https://github.com/MdKasif0/Barakah">
-  <img src="https://github-readme-stats.vercel.app/api/pin/?username=MdKasif0&repo=Barakah&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=6CE5F7&icon_color=6CE5F7" />
-</a>
+### 🚀 Barakah
+**AI-Powered Web Application**
 
-<a href="https://github.com/MdKasif0/ByteChat-V3">
-  <img src="https://github-readme-stats.vercel.app/api/pin/?username=MdKasif0&repo=ByteChat&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=6CE5F7&icon_color=6CE5F7" />
-</a>
+A cutting-edge project showcasing seamless AI integration in web applications.
 
-</div>
+🔗 **Tech Stack:** React, Firebase, AI/ML  
+⭐ **Status:** Active Development
+
+[View Project →](https://github.com/MdKasif0/Barakah)
+
+</td>
+<td width="50%" valign="top">
+
+### 💬 ByteChat
+**Real-time Chat Platform**
+
+Modern chat application with AI capabilities and real-time features.
+
+🔗 **Tech Stack:** Next.js, Firebase, OpenAI  
+⭐ **Status:** Active Development
+
+[View Project →](https://github.com/MdKasif0/ByteChat)
+
+</td>
+</tr>
+</table>
 
 <br>
 
