@@ -172,7 +172,7 @@
   <rect x="755" y="185" width="3" height="35" class="cursor" rx="1"/>
 
   <!-- Tagline -->
-  <text x="600" y="260" text-anchor="middle" class="tagline">🚀 High School Dev  ·  AI Whisperer  ·  Code Artist</text>
+  <text x="600" y="260" text-anchor="middle" class="tagline">🚀 AI-First Developer  ·  Builder  ·  Code Artist</text>
 
   <!-- Bottom info -->
   <text x="600" y="310" text-anchor="middle" class="subtitle">Building AI into Everything · Firebase · Next.js · TypeScript</text>
