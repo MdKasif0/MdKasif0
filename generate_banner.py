@@ -365,26 +365,25 @@ def generate_svg(theme="dark"):
     info_lines = [
         ("Subject", "Md Kasif Uddin"),
         ("Role", "AI-First Developer"),
-        ("Origin", "Bhagalpur, Bihar, India"),
-        ("Education", "Self-Taught Developer"),
+        ("Origin", "Bihar, India"),
+        ("Education", "Chandigarh University"),
         ("Status", "Building + Learning + Shipping"),
-        ("ToolChain", "Cursor, Git, Firebase Studio, n8n"),
+        ("ToolChain", "Claude Code, Git, Supabase, Netlify"),
     ]
     
     core_lines = [
-        ("Core.Lang", "JavaScript, TypeScript, Python"),
+        ("Core.Lang", "Java, TypeScript, Python"),
         ("Core.Frontend", "React, Next.js"),
         ("Core.Backend", "Node.js, Firebase"),
-        ("Core.Database", "Firebase, MongoDB, PostgreSQL"),
+        ("Core.Database", "Supabase, MongoDB, PostgreSQL"),
         ("Core.Infra", "Netlify, Docker, Git"),
     ]
     
     contact_lines = [
         ("Grid.Mail", "mdkasifuddin123@gmail.com"),
-        ("Grid.Portfolio", "hellokasif.netlify.app"),
         ("Grid.Twitter", "@md_kasif_uddin"),
         ("Grid.GitHub", "@MdKasif0"),
-        ("Grid.Instagram", "@M_Kasif_Uddin"),
+        ("Grid.Instagram", "@md_kasif_uddin"),
     ]
     
     def make_info_text(x, y, label, value, delay, total_width=655):
