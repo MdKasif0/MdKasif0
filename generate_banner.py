@@ -91,28 +91,32 @@ def create_dev_icon(size=400):
     return final_img
 
 def create_python_icon(size=400):
-    """Create a detailed, high-contrast Python emblem for stipple artwork."""
-    img = Image.new("L", (size, size), 255)
-    draw = ImageDraw.Draw(img)
-    scale = size / 400
-
-    def box(left, top, right, bottom):
-        return tuple(round(value * scale) for value in (left, top, right, bottom))
-
-    # Interlocking snake bodies, centre crossover, and offset eyes closely
-    # follow the familiar Python emblem while staying legible as dots.
-    draw.rounded_rectangle(box(50, 48, 255, 208), radius=round(48 * scale), fill=0)
-    draw.rectangle(box(50, 125, 152, 250), fill=0)
-    draw.rounded_rectangle(box(145, 192, 350, 352), radius=round(48 * scale), fill=0)
-    draw.rectangle(box(248, 150, 350, 275), fill=0)
-    draw.rounded_rectangle(box(151, 136, 249, 264), radius=round(22 * scale), fill=255)
-
-    eye_radius = max(5, round(10 * scale))
-    for cx, cy in ((205, 91), (195, 309)):
-        draw.ellipse((cx * scale - eye_radius, cy * scale - eye_radius,
-                      cx * scale + eye_radius, cy * scale + eye_radius), fill=255)
+    """Load the user's python logo and prep it for stipple art."""
+    icon_path = os.path.join(OUTPUT_DIR, "python-icon-source.png")
+    if not os.path.exists(icon_path):
+        return Image.new("L", (size, size), 255)
+        
+    img = Image.open(icon_path).convert("RGBA")
     
-    return img
+    # Create white background and composite
+    bg = Image.new("RGBA", img.size, (255, 255, 255, 255))
+    bg.paste(img, (0, 0), img)
+    
+    # Convert to grayscale
+    img = bg.convert("L")
+    
+    # Resize to fit within size bounds
+    img.thumbnail((size, size), Image.LANCZOS)
+    
+    # Center on white canvas
+    final_img = Image.new("L", (size, size), 255)
+    offset = ((size - img.width) // 2, (size - img.height) // 2)
+    final_img.paste(img, offset)
+    
+    # Enhance contrast
+    final_img = ImageEnhance.Contrast(final_img).enhance(2.0)
+    
+    return final_img
 
 
 def image_to_stipple_points(img, canvas_w, canvas_h, num_dots):
