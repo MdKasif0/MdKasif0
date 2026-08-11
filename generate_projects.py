@@ -227,18 +227,21 @@ def project_card_svg(proj, card_x, card_y, delay):
     )
     
     # Project name
+    import html
+    safe_name = html.escape(proj["name"])
     parts.append(
         f'<text x="16" y="63" font-size="22" font-weight="700" fill="{TEXT_PRIMARY}" '
         f'font-family="ui-monospace,SFMono-Regular,Menlo,monospace">'
-        f'{proj["name"]}<tspan fill="{ACCENT}" font-weight="400">_</tspan></text>'
+        f'{safe_name}<tspan fill="{ACCENT}" font-weight="400">_</tspan></text>'
     )
     
     # Description
     desc = proj["desc"]
     if len(desc) > 48:
         desc = desc[:45] + "..."
+    safe_desc = html.escape(desc)
     parts.append(
-        f'<text x="16" y="82" font-size="12" fill="{TEXT_SECONDARY}">{desc}</text>'
+        f'<text x="16" y="82" font-size="12" fill="{TEXT_SECONDARY}">{safe_desc}</text>'
     )
     
     # Language breakdown legend
