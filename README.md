@@ -1,33 +1,11 @@
-<!-- ===== TERMINAL HERO ===== -->
-<div align="center">
+<!-- ===== NEON SYSTEM HERO ===== -->
+<!-- GitHub automatically selects the emerald dark or light hero. -->
 
-<h3><code>mdkasif@github ~ $ ./contributions.sh</code></h3>
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/MdKasif0/MdKasif0/main/contrib-heatmap.svg?v=1" />
-  <img width="860" src="https://raw.githubusercontent.com/MdKasif0/MdKasif0/main/contrib-heatmap.svg?v=1" alt="Heatmap" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/MdKasif0/MdKasif0/main/dark.svg?v=1">
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/MdKasif0/MdKasif0/main/light.svg?v=1">
+  <img alt="Md Kasif" src="https://raw.githubusercontent.com/MdKasif0/MdKasif0/main/light.svg?v=1">
 </picture>
-
-<br><br>
-
-<h3><code>mdkasif@github ~ $ whoami</code></h3>
-<table>
-  <tr>
-    <td valign="top">
-      <picture>
-        <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/MdKasif0/MdKasif0/main/kasif-ascii.svg?v=1" />
-        <img width="370" src="https://raw.githubusercontent.com/MdKasif0/MdKasif0/main/kasif-ascii.svg?v=1" alt="Md Kasif ASCII" />
-      </picture>
-    </td>
-    <td valign="top">
-      <picture>
-        <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/MdKasif0/MdKasif0/main/info-card.svg?v=1" />
-        <img width="490" src="https://raw.githubusercontent.com/MdKasif0/MdKasif0/main/info-card.svg?v=1" alt="Md Kasif Info" />
-      </picture>
-    </td>
-  </tr>
-</table>
-
-</div>
 
 <!-- ===== GITHUB STATS ===== -->
 
