@@ -1,5 +1,5 @@
 <!-- ===== NEON SYSTEM HERO ===== -->
-<!-- GitHub automatically selects the violet/cyan dark or light hero. -->
+<!-- GitHub automatically selects the emerald dark or light hero. -->
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/MdKasif0/MdKasif0/main/dark.svg">

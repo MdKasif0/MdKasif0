@@ -23,8 +23,8 @@ except ImportError:
 # ── CONFIG ──
 GITHUB_USER = "MdKasif0"
 OUTPUT_DIR = os.path.dirname(os.path.abspath(__file__))
-CANVAS_W, CANVAS_H = 300, 340  # Stipple canvas size (in 1x1 pixel units)
-DOT_DENSITY = 5500  # Total number of dots to place
+CANVAS_W, CANVAS_H = 320, 360  # Higher-resolution stipple canvas
+DOT_DENSITY = 10000  # Dense enough to preserve facial and logo details
 NUM_LAYERS = 12  # Number of animation layers for fade-in
 ANIM_DUR = "0.9s"
 
@@ -66,7 +66,7 @@ def create_dev_icon(size=400):
     return img
 
 def create_python_icon(size=400):
-    """Create a high-contrast Python mark for the stipple animation."""
+    """Create a detailed, high-contrast Python emblem for stipple artwork."""
     img = Image.new("L", (size, size), 255)
     draw = ImageDraw.Draw(img)
     scale = size / 400
@@ -74,15 +74,16 @@ def create_python_icon(size=400):
     def box(left, top, right, bottom):
         return tuple(round(value * scale) for value in (left, top, right, bottom))
 
-    # The interlocking forms remain recognizable after conversion to dots.
-    draw.rounded_rectangle(box(66, 48, 254, 208), radius=round(44 * scale), fill=0)
-    draw.rectangle(box(66, 119, 157, 246), fill=0)
-    draw.rounded_rectangle(box(146, 191, 334, 352), radius=round(44 * scale), fill=0)
-    draw.rectangle(box(243, 154, 334, 281), fill=0)
-    draw.rounded_rectangle(box(154, 139, 246, 261), radius=round(18 * scale), fill=255)
+    # Interlocking snake bodies, centre crossover, and offset eyes closely
+    # follow the familiar Python emblem while staying legible as dots.
+    draw.rounded_rectangle(box(50, 48, 255, 208), radius=round(48 * scale), fill=0)
+    draw.rectangle(box(50, 125, 152, 250), fill=0)
+    draw.rounded_rectangle(box(145, 192, 350, 352), radius=round(48 * scale), fill=0)
+    draw.rectangle(box(248, 150, 350, 275), fill=0)
+    draw.rounded_rectangle(box(151, 136, 249, 264), radius=round(22 * scale), fill=255)
 
     eye_radius = max(5, round(10 * scale))
-    for cx, cy in ((204, 91), (196, 309)):
+    for cx, cy in ((205, 91), (195, 309)):
         draw.ellipse((cx * scale - eye_radius, cy * scale - eye_radius,
                       cx * scale + eye_radius, cy * scale + eye_radius), fill=255)
     
@@ -275,35 +276,35 @@ def generate_svg(theme="dark"):
     
     # Theme colors
     if is_dark:
-        bg_primary = "#080A1F"
-        bg_panel = "#0D1030"
-        bg_titlebar = "#0C0E26"
-        border_subtle = "rgba(196,181,253,0.16)"
-        accent = "#22D3EE"
-        accent_secondary = "#7C3AED"
-        text_primary = "#F5F3FF"
-        text_secondary = "#A5B4FC"
-        text_muted = "rgba(196,181,253,0.32)"
-        dot_color = "#E879F9"
-        dot_border_color = "#22D3EE"
-        label_prefix_color = "#67E8F9"
-        panel_border = "rgba(34,211,238,0.38)"
-        gradient_stops = ['#22D3EE', '#7C3AED', '#E879F9']
+        bg_primary = "#030B07"
+        bg_panel = "#07130B"
+        bg_titlebar = "#08100D"
+        border_subtle = "rgba(110,231,183,0.16)"
+        accent = "#4ADE80"
+        accent_secondary = "#16A34A"
+        text_primary = "#ECFDF5"
+        text_secondary = "#A7F3D0"
+        text_muted = "rgba(167,243,208,0.32)"
+        dot_color = "#86EFAC"
+        dot_border_color = "#34D399"
+        label_prefix_color = "#6EE7B7"
+        panel_border = "rgba(52,211,153,0.38)"
+        gradient_stops = ['#4ADE80', '#10B981', '#86EFAC']
     else:
-        bg_primary = "#F7F5FF"
+        bg_primary = "#F2FBF5"
         bg_panel = "#FFFFFF"
-        bg_titlebar = "#F0EDFF"
-        border_subtle = "rgba(91,33,182,0.14)"
-        accent = "#0891B2"
-        accent_secondary = "#6D28D9"
-        text_primary = "#1E1B4B"
-        text_secondary = "#5B21B6"
-        text_muted = "rgba(76,29,149,0.26)"
-        dot_color = "#C026D3"
-        dot_border_color = "#0891B2"
-        label_prefix_color = "#0E7490"
-        panel_border = "rgba(8,145,178,0.32)"
-        gradient_stops = ['#0891B2', '#6D28D9', '#C026D3']
+        bg_titlebar = "#E8F8EE"
+        border_subtle = "rgba(6,95,70,0.14)"
+        accent = "#059669"
+        accent_secondary = "#047857"
+        text_primary = "#052E1C"
+        text_secondary = "#047857"
+        text_muted = "rgba(6,95,70,0.26)"
+        dot_color = "#16A34A"
+        dot_border_color = "#059669"
+        label_prefix_color = "#047857"
+        panel_border = "rgba(5,150,105,0.32)"
+        gradient_stops = ['#059669', '#10B981', '#22C55E']
     
     # ── Download/create images ──
     print(f"[{theme}] Downloading profile picture...")
@@ -326,6 +327,8 @@ def generate_svg(theme="dark"):
         images_data, CANVAS_W, CANVAS_H, DOT_DENSITY, NUM_LAYERS,
         fill_color=dot_color, cycle_duration=4.0
     )
+    stipple_scale_x = 372 / CANVAS_W
+    stipple_scale_y = 492 / CANVAS_H
     
     # ── Build SYSTEM.INFO text lines ──
     info_lines = [
@@ -479,7 +482,7 @@ def generate_svg(theme="dark"):
 <text x="38" y="74" font-size="10" letter-spacing="3" fill="{text_secondary}" opacity="0.7">VISUAL.MAP</text>
 <rect x="36" y="84" width="400" height="492" rx="10" fill="none" stroke="{dot_border_color}" stroke-width="2" opacity="0.45" filter="url(#glow3)"/>
 <rect x="36" y="84" width="400" height="492" rx="10" fill="{bg_panel}" stroke="{panel_border}"/>
-<g transform="translate(50,86) scale(1.2400,1.4471)" fill="{dot_color}" shape-rendering="crispEdges">
+<g transform="translate(50,86) scale({stipple_scale_x:.4f},{stipple_scale_y:.4f})" fill="{dot_color}" shape-rendering="crispEdges">
 {stipple_svg}
 </g>
 {text_block}
