@@ -35,9 +35,9 @@
 <path d="M526.8,47.8 A25,25 0 0 1 531.4,47.0 L532.0,56.0 A16,16 0 0 0 529.0,56.5 Z" fill="#563D7C" opacity="0.85"/>
 <path d="M531.4,47.0 A25,25 0 0 1 533.0,47.0 L533.0,56.0 A16,16 0 0 0 532.0,56.0 Z" fill="#6B7280" opacity="0.85"/>
 <text x="533" y="77" text-anchor="middle" font-size="14" font-weight="700" fill="#F8FAFC">96%</text>
-<rect x="16" y="110" width="79" height="20" rx="4" fill="#3178C6" opacity="0.7"/><text x="56" y="124" text-anchor="middle" font-size="10" font-weight="600" fill="#F8FAFC">TypeScript</text>
-<rect x="101.0" y="110" width="60" height="20" rx="4" fill="#000000" opacity="0.7"/><text x="131" y="124" text-anchor="middle" font-size="10" font-weight="600" fill="#F8FAFC">Next.js</text>
-<rect x="166.5" y="110" width="27" height="20" rx="4" fill="#00FF41" opacity="0.7"/><text x="180" y="124" text-anchor="middle" font-size="10" font-weight="600" fill="#F8FAFC">AI</text>
+<rect x="16" y="110" width="79" height="20" rx="4" fill="#3178C6" opacity="0.7"/><text x="56" y="124" text-anchor="middle" font-size="10" font-weight="600" fill="#FFFFFF">TypeScript</text>
+<rect x="101.0" y="110" width="60" height="20" rx="4" fill="#000000" opacity="0.7"/><text x="131" y="124" text-anchor="middle" font-size="10" font-weight="600" fill="#FFFFFF">Next.js</text>
+<rect x="166.5" y="110" width="27" height="20" rx="4" fill="#00FF41" opacity="0.7"/><text x="180" y="124" text-anchor="middle" font-size="10" font-weight="600" fill="#FFFFFF">AI</text>
 <text x="16" y="152" font-size="10" fill="#475569"><tspan fill="#00FF41">★</tspan> 19  updated 1d ago</text>
 </g></a>
 <a href="https://github.com/MdKasif0/black-hole-blender" target="_blank">
@@ -56,9 +56,9 @@
 <circle cx="533" cy="72" r="25" fill="#1a1a1a" stroke="rgba(0,255,65,0.1)" stroke-width="1"/>
 <path d="M533.0,47.0 A25,25 0 1 1 533.0,47.0 L533.0,56.0 A16,16 0 1 0 533.0,56.0 Z" fill="#3776AB" opacity="0.85"/>
 <text x="533" y="77" text-anchor="middle" font-size="14" font-weight="700" fill="#F8FAFC">100%</text>
-<rect x="16" y="110" width="53" height="20" rx="4" fill="#3776AB" opacity="0.7"/><text x="42" y="124" text-anchor="middle" font-size="10" font-weight="600" fill="#F8FAFC">Python</text>
-<rect x="75.0" y="110" width="60" height="20" rx="4" fill="#F5792A" opacity="0.7"/><text x="105" y="124" text-anchor="middle" font-size="10" font-weight="600" fill="#F8FAFC">Blender</text>
-<rect x="140.5" y="110" width="27" height="20" rx="4" fill="#333" opacity="0.7"/><text x="154" y="124" text-anchor="middle" font-size="10" font-weight="600" fill="#F8FAFC">3D</text>
+<rect x="16" y="110" width="53" height="20" rx="4" fill="#3776AB" opacity="0.7"/><text x="42" y="124" text-anchor="middle" font-size="10" font-weight="600" fill="#FFFFFF">Python</text>
+<rect x="75.0" y="110" width="60" height="20" rx="4" fill="#F5792A" opacity="0.7"/><text x="105" y="124" text-anchor="middle" font-size="10" font-weight="600" fill="#FFFFFF">Blender</text>
+<rect x="140.5" y="110" width="27" height="20" rx="4" fill="#333" opacity="0.7"/><text x="154" y="124" text-anchor="middle" font-size="10" font-weight="600" fill="#FFFFFF">3D</text>
 <text x="16" y="152" font-size="10" fill="#475569"><tspan fill="#00FF41">★</tspan> 1  updated 1w ago</text>
 </g></a>
 <a href="https://github.com/MdKasif0/AI-Checkers-Arena" target="_blank">
@@ -83,9 +83,9 @@
 <path d="M522.4,49.4 A25,25 0 0 1 531.4,47.0 L532.0,56.0 A16,16 0 0 0 526.2,57.5 Z" fill="#563D7C" opacity="0.85"/>
 <path d="M531.4,47.0 A25,25 0 0 1 533.0,47.0 L533.0,56.0 A16,16 0 0 0 532.0,56.0 Z" fill="#F7DF1E" opacity="0.85"/>
 <text x="533" y="77" text-anchor="middle" font-size="14" font-weight="700" fill="#F8FAFC">93%</text>
-<rect x="16" y="110" width="79" height="20" rx="4" fill="#3178C6" opacity="0.7"/><text x="56" y="124" text-anchor="middle" font-size="10" font-weight="600" fill="#F8FAFC">TypeScript</text>
-<rect x="101.0" y="110" width="27" height="20" rx="4" fill="#00FF41" opacity="0.7"/><text x="114" y="124" text-anchor="middle" font-size="10" font-weight="600" fill="#F8FAFC">AI</text>
-<rect x="134.0" y="110" width="40" height="20" rx="4" fill="#333" opacity="0.7"/><text x="154" y="124" text-anchor="middle" font-size="10" font-weight="600" fill="#F8FAFC">Game</text>
+<rect x="16" y="110" width="79" height="20" rx="4" fill="#3178C6" opacity="0.7"/><text x="56" y="124" text-anchor="middle" font-size="10" font-weight="600" fill="#FFFFFF">TypeScript</text>
+<rect x="101.0" y="110" width="27" height="20" rx="4" fill="#00FF41" opacity="0.7"/><text x="114" y="124" text-anchor="middle" font-size="10" font-weight="600" fill="#FFFFFF">AI</text>
+<rect x="134.0" y="110" width="40" height="20" rx="4" fill="#333" opacity="0.7"/><text x="154" y="124" text-anchor="middle" font-size="10" font-weight="600" fill="#FFFFFF">Game</text>
 <text x="16" y="152" font-size="10" fill="#475569"><tspan fill="#00FF41">★</tspan> 1  updated 3w ago</text>
 </g></a>
 <a href="https://github.com/MdKasif0/Black-Hole-Gravitational-Lensing" target="_blank">
@@ -110,9 +110,9 @@
 <path d="M523.8,48.8 A25,25 0 0 1 531.4,47.0 L532.0,56.0 A16,16 0 0 0 527.1,57.1 Z" fill="#563D7C" opacity="0.85"/>
 <path d="M531.4,47.0 A25,25 0 0 1 533.0,47.0 L533.0,56.0 A16,16 0 0 0 532.0,56.0 Z" fill="#E34C26" opacity="0.85"/>
 <text x="533" y="77" text-anchor="middle" font-size="14" font-weight="700" fill="#F8FAFC">94%</text>
-<rect x="16" y="110" width="79" height="20" rx="4" fill="#3178C6" opacity="0.7"/><text x="56" y="124" text-anchor="middle" font-size="10" font-weight="600" fill="#F8FAFC">TypeScript</text>
-<rect x="101.0" y="110" width="60" height="20" rx="4" fill="#333" opacity="0.7"/><text x="131" y="124" text-anchor="middle" font-size="10" font-weight="600" fill="#F8FAFC">Physics</text>
-<rect x="166.5" y="110" width="46" height="20" rx="4" fill="#990000" opacity="0.7"/><text x="190" y="124" text-anchor="middle" font-size="10" font-weight="600" fill="#F8FAFC">WebGL</text>
+<rect x="16" y="110" width="79" height="20" rx="4" fill="#3178C6" opacity="0.7"/><text x="56" y="124" text-anchor="middle" font-size="10" font-weight="600" fill="#FFFFFF">TypeScript</text>
+<rect x="101.0" y="110" width="60" height="20" rx="4" fill="#333" opacity="0.7"/><text x="131" y="124" text-anchor="middle" font-size="10" font-weight="600" fill="#FFFFFF">Physics</text>
+<rect x="166.5" y="110" width="46" height="20" rx="4" fill="#990000" opacity="0.7"/><text x="190" y="124" text-anchor="middle" font-size="10" font-weight="600" fill="#FFFFFF">WebGL</text>
 <text x="16" y="152" font-size="10" fill="#475569"><tspan fill="#00FF41">★</tspan> 1  updated 2w ago</text>
 </g></a>
 <a href="https://github.com/MdKasif0/Barakah" target="_blank">
@@ -137,9 +137,9 @@
 <path d="M523.8,48.8 A25,25 0 0 1 531.4,47.0 L532.0,56.0 A16,16 0 0 0 527.1,57.1 Z" fill="#F7DF1E" opacity="0.85"/>
 <path d="M531.4,47.0 A25,25 0 0 1 533.0,47.0 L533.0,56.0 A16,16 0 0 0 532.0,56.0 Z" fill="#563D7C" opacity="0.85"/>
 <text x="533" y="77" text-anchor="middle" font-size="14" font-weight="700" fill="#F8FAFC">94%</text>
-<rect x="16" y="110" width="79" height="20" rx="4" fill="#3178C6" opacity="0.7"/><text x="56" y="124" text-anchor="middle" font-size="10" font-weight="600" fill="#F8FAFC">TypeScript</text>
-<rect x="101.0" y="110" width="46" height="20" rx="4" fill="#333" opacity="0.7"/><text x="124" y="124" text-anchor="middle" font-size="10" font-weight="600" fill="#F8FAFC">React</text>
-<rect x="153.5" y="110" width="60" height="20" rx="4" fill="#000000" opacity="0.7"/><text x="183" y="124" text-anchor="middle" font-size="10" font-weight="600" fill="#F8FAFC">Next.js</text>
+<rect x="16" y="110" width="79" height="20" rx="4" fill="#3178C6" opacity="0.7"/><text x="56" y="124" text-anchor="middle" font-size="10" font-weight="600" fill="#FFFFFF">TypeScript</text>
+<rect x="101.0" y="110" width="46" height="20" rx="4" fill="#333" opacity="0.7"/><text x="124" y="124" text-anchor="middle" font-size="10" font-weight="600" fill="#FFFFFF">React</text>
+<rect x="153.5" y="110" width="60" height="20" rx="4" fill="#000000" opacity="0.7"/><text x="183" y="124" text-anchor="middle" font-size="10" font-weight="600" fill="#FFFFFF">Next.js</text>
 <text x="16" y="152" font-size="10" fill="#475569"><tspan fill="#00FF41">★</tspan> 1  updated 9mo ago</text>
 </g></a>
 <a href="https://github.com/MdKasif0/ReadOn" target="_blank">
@@ -167,9 +167,9 @@
 <path d="M529.9,47.2 A25,25 0 0 1 531.4,47.0 L532.0,56.0 A16,16 0 0 0 531.0,56.1 Z" fill="#E34C26" opacity="0.85"/>
 <path d="M531.4,47.0 A25,25 0 0 1 533.0,47.0 L533.0,56.0 A16,16 0 0 0 532.0,56.0 Z" fill="#F7DF1E" opacity="0.85"/>
 <text x="533" y="77" text-anchor="middle" font-size="14" font-weight="700" fill="#F8FAFC">97%</text>
-<rect x="16" y="110" width="79" height="20" rx="4" fill="#3178C6" opacity="0.7"/><text x="56" y="124" text-anchor="middle" font-size="10" font-weight="600" fill="#F8FAFC">TypeScript</text>
-<rect x="101.0" y="110" width="46" height="20" rx="4" fill="#333" opacity="0.7"/><text x="124" y="124" text-anchor="middle" font-size="10" font-weight="600" fill="#F8FAFC">React</text>
-<rect x="153.5" y="110" width="66" height="20" rx="4" fill="#FFCA28" opacity="0.7"/><text x="186" y="124" text-anchor="middle" font-size="10" font-weight="600" fill="#F8FAFC">Firebase</text>
+<rect x="16" y="110" width="79" height="20" rx="4" fill="#3178C6" opacity="0.7"/><text x="56" y="124" text-anchor="middle" font-size="10" font-weight="600" fill="#FFFFFF">TypeScript</text>
+<rect x="101.0" y="110" width="46" height="20" rx="4" fill="#333" opacity="0.7"/><text x="124" y="124" text-anchor="middle" font-size="10" font-weight="600" fill="#FFFFFF">React</text>
+<rect x="153.5" y="110" width="66" height="20" rx="4" fill="#FFCA28" opacity="0.7"/><text x="186" y="124" text-anchor="middle" font-size="10" font-weight="600" fill="#FFFFFF">Firebase</text>
 <text x="16" y="152" font-size="10" fill="#475569"><tspan fill="#00FF41">★</tspan> 1  updated 11mo ago</text>
 </g></a>
 </svg>

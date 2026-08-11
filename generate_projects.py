@@ -61,18 +61,39 @@ PROJECTS = [
     },
 ]
 
-# ── Theme Colors ──
-BG = "#0A0A0A"
-CARD_BG = "#111111"
-CARD_HEADER_BG = "#0D0D0D"
-BORDER_COLOR = "rgba(0,255,65,0.28)"
-BORDER_GLOW = "rgba(0,255,65,0.22);rgba(0,255,65,0.5);rgba(0,255,65,0.22)"
-ACCENT = "#00FF41"
-TEXT_PRIMARY = "#F8FAFC"
-TEXT_SECONDARY = "#94A3B8"
-TEXT_MUTED = "#475569"
-DOT_ACTIVE = "#00FF41"
-HEADER_LINE = "rgba(255,255,255,0.08)"
+def get_theme_colors(theme):
+    if theme == "dark":
+        return {
+            "BG": "#0A0A0A",
+            "CARD_BG": "#111111",
+            "CARD_HEADER_BG": "#0D0D0D",
+            "BORDER_COLOR": "rgba(0,255,65,0.28)",
+            "BORDER_GLOW": "rgba(0,255,65,0.22);rgba(0,255,65,0.5);rgba(0,255,65,0.22)",
+            "ACCENT": "#00FF41",
+            "TEXT_PRIMARY": "#F8FAFC",
+            "TEXT_SECONDARY": "#94A3B8",
+            "TEXT_MUTED": "#475569",
+            "DOT_ACTIVE": "#00FF41",
+            "HEADER_LINE": "rgba(255,255,255,0.08)",
+            "CHART_BG": "#1a1a1a",
+            "CHART_STROKE": "rgba(0,255,65,0.1)",
+        }
+    else:
+        return {
+            "BG": "#F0F4F3",
+            "CARD_BG": "#F8FAF9",
+            "CARD_HEADER_BG": "#EDF2F0",
+            "BORDER_COLOR": "rgba(5,150,105,0.28)",
+            "BORDER_GLOW": "rgba(5,150,105,0.22);rgba(5,150,105,0.5);rgba(5,150,105,0.22)",
+            "ACCENT": "#059669",
+            "TEXT_PRIMARY": "#0F172A",
+            "TEXT_SECONDARY": "#475569",
+            "TEXT_MUTED": "rgba(71,85,105,0.5)",
+            "DOT_ACTIVE": "#059669",
+            "HEADER_LINE": "rgba(0,0,0,0.08)",
+            "CHART_BG": "#EDF2F0",
+            "CHART_STROKE": "rgba(5,150,105,0.1)",
+        }
 
 # Language colors
 LANG_COLORS = {
@@ -109,12 +130,12 @@ MARGIN_X = 5
 MARGIN_TOP = 42
 
 
-def donut_chart_svg(cx, cy, r_outer, r_inner, langs, size_label):
+def donut_chart_svg(cx, cy, r_outer, r_inner, langs, size_label, colors):
     """Generate a donut chart SVG."""
     parts = []
     
     # Background circle
-    parts.append(f'<circle cx="{cx}" cy="{cy}" r="{r_outer}" fill="#1a1a1a" stroke="rgba(0,255,65,0.1)" stroke-width="1"/>')
+    parts.append(f'<circle cx="{cx}" cy="{cy}" r="{r_outer}" fill="{colors["CHART_BG"]}" stroke="{colors["CHART_STROKE"]}" stroke-width="1"/>')
     
     # Draw segments
     total = sum(langs.values())
@@ -155,13 +176,13 @@ def donut_chart_svg(cx, cy, r_outer, r_inner, langs, size_label):
     primary_pct = list(langs.values())[0]
     parts.append(
         f'<text x="{cx}" y="{cy + 5}" text-anchor="middle" font-size="14" '
-        f'font-weight="700" fill="{TEXT_PRIMARY}">{primary_pct}%</text>'
+        f'font-weight="700" fill="{colors["TEXT_PRIMARY"]}">{primary_pct}%</text>'
     )
     
     return "\n".join(parts)
 
 
-def lang_legend_svg(x, y, langs):
+def lang_legend_svg(x, y, langs, colors):
     """Generate language legend dots + text."""
     parts = []
     ly = y
@@ -169,14 +190,14 @@ def lang_legend_svg(x, y, langs):
         color = LANG_COLORS.get(lang, "#6B7280")
         parts.append(f'<circle cx="{x}" cy="{ly - 3}" r="3" fill="{color}"/>')
         parts.append(
-            f'<text x="{x + 8}" y="{ly}" font-size="10" fill="{TEXT_SECONDARY}">'
+            f'<text x="{x + 8}" y="{ly}" font-size="10" fill="{colors["TEXT_SECONDARY"]}">'
             f'{lang} {pct}%</text>'
         )
         ly += 16
     return "\n".join(parts)
 
 
-def tag_badge_svg(x, y, tag):
+def tag_badge_svg(x, y, tag, colors):
     """Generate a rounded tag badge."""
     color = TAG_COLORS.get(tag, "#333")
     text_len = len(tag) * 6.5 + 14
@@ -184,11 +205,11 @@ def tag_badge_svg(x, y, tag):
         f'<rect x="{x}" y="{y}" width="{text_len:.0f}" height="20" rx="4" '
         f'fill="{color}" opacity="0.7"/>'
         f'<text x="{x + text_len/2:.0f}" y="{y + 14}" text-anchor="middle" '
-        f'font-size="10" font-weight="600" fill="{TEXT_PRIMARY}">{tag}</text>'
+        f'font-size="10" font-weight="600" fill="#FFFFFF">{tag}</text>'
     )
 
 
-def project_card_svg(proj, card_x, card_y, delay):
+def project_card_svg(proj, card_x, card_y, delay, colors):
     """Generate a single project card."""
     parts = []
     
@@ -202,26 +223,26 @@ def project_card_svg(proj, card_x, card_y, delay):
     
     # Card background
     parts.append(
-        f'<rect width="{CARD_W}" height="{CARD_H}" rx="12" fill="{CARD_BG}" '
-        f'stroke="{BORDER_COLOR}">'
-        f'<animate attributeName="stroke" values="{BORDER_GLOW}" '
+        f'<rect width="{CARD_W}" height="{CARD_H}" rx="12" fill="{colors["CARD_BG"]}" '
+        f'stroke="{colors["BORDER_COLOR"]}">'
+        f'<animate attributeName="stroke" values="{colors["BORDER_GLOW"]}" '
         f'dur="4.5s" begin="{delay:.2f}s" repeatCount="indefinite"/></rect>'
     )
     
     # Header bar
-    parts.append(f'<rect width="{CARD_W}" height="30" rx="12" fill="{CARD_HEADER_BG}"/>')
-    parts.append(f'<rect y="18" width="{CARD_W}" height="12" fill="{CARD_HEADER_BG}"/>')
-    parts.append(f'<line x1="0" y1="30" x2="{CARD_W}" y2="30" stroke="{HEADER_LINE}"/>')
+    parts.append(f'<rect width="{CARD_W}" height="30" rx="12" fill="{colors["CARD_HEADER_BG"]}"/>')
+    parts.append(f'<rect y="18" width="{CARD_W}" height="12" fill="{colors["CARD_HEADER_BG"]}"/>')
+    parts.append(f'<line x1="0" y1="30" x2="{CARD_W}" y2="30" stroke="{colors["HEADER_LINE"]}"/>')
     
     # Repo path in header
     parts.append(
-        f'<text x="16" y="19" font-size="10" fill="{TEXT_SECONDARY}">'
-        f'<tspan fill="{ACCENT}">&#8226;</tspan> {proj["repo"]}</text>'
+        f'<text x="16" y="19" font-size="10" fill="{colors["TEXT_SECONDARY"]}">'
+        f'<tspan fill="{colors["ACCENT"]}">&#8226;</tspan> {proj["repo"]}</text>'
     )
     
     # Status dot
     parts.append(
-        f'<circle cx="{CARD_W - 16}" cy="15" r="3.5" fill="{DOT_ACTIVE}">'
+        f'<circle cx="{CARD_W - 16}" cy="15" r="3.5" fill="{colors["DOT_ACTIVE"]}">'
         f'<animate attributeName="opacity" values="1;0.25;1" dur="1.8s" '
         f'repeatCount="indefinite"/></circle>'
     )
@@ -230,9 +251,9 @@ def project_card_svg(proj, card_x, card_y, delay):
     import html
     safe_name = html.escape(proj["name"])
     parts.append(
-        f'<text x="16" y="63" font-size="22" font-weight="700" fill="{TEXT_PRIMARY}" '
+        f'<text x="16" y="63" font-size="22" font-weight="700" fill="{colors["TEXT_PRIMARY"]}" '
         f'font-family="ui-monospace,SFMono-Regular,Menlo,monospace">'
-        f'{safe_name}<tspan fill="{ACCENT}" font-weight="400">_</tspan></text>'
+        f'{safe_name}<tspan fill="{colors["ACCENT"]}" font-weight="400">_</tspan></text>'
     )
     
     # Description
@@ -241,27 +262,27 @@ def project_card_svg(proj, card_x, card_y, delay):
         desc = desc[:45] + "..."
     safe_desc = html.escape(desc)
     parts.append(
-        f'<text x="16" y="82" font-size="12" fill="{TEXT_SECONDARY}">{safe_desc}</text>'
+        f'<text x="16" y="82" font-size="12" fill="{colors["TEXT_SECONDARY"]}">{safe_desc}</text>'
     )
     
     # Language breakdown legend
     legend_x = 340
     legend_y = 62
-    parts.append(lang_legend_svg(legend_x, legend_y, proj["langs"]))
+    parts.append(lang_legend_svg(legend_x, legend_y, proj["langs"], colors))
     
     # Donut chart
-    parts.append(donut_chart_svg(CARD_W - 45, 72, 25, 16, proj["langs"], ""))
+    parts.append(donut_chart_svg(CARD_W - 45, 72, 25, 16, proj["langs"], "", colors))
     
     # Tags
     tag_x = 16
     for tag in proj["tags"]:
-        parts.append(tag_badge_svg(tag_x, 110, tag))
+        parts.append(tag_badge_svg(tag_x, 110, tag, colors))
         tag_x += len(tag) * 6.5 + 14 + 6
     
     # Stars and update time
     parts.append(
-        f'<text x="16" y="152" font-size="10" fill="{TEXT_MUTED}">'
-        f'<tspan fill="{ACCENT}">★</tspan> {proj["stars"]}  '
+        f'<text x="16" y="152" font-size="10" fill="{colors["TEXT_MUTED"]}">'
+        f'<tspan fill="{colors["ACCENT"]}">★</tspan> {proj["stars"]}  '
         f'updated {proj["updated"]}</text>'
     )
     
@@ -270,8 +291,9 @@ def project_card_svg(proj, card_x, card_y, delay):
     return "\n".join(parts)
 
 
-def generate_projects_svg():
+def generate_projects_svg(theme):
     """Generate the full projects.svg."""
+    colors = get_theme_colors(theme)
     num_rows = math.ceil(len(PROJECTS) / COLS)
     total_h = MARGIN_TOP + num_rows * (CARD_H + ROW_GAP) + 10
     
@@ -286,27 +308,27 @@ def generate_projects_svg():
     )
     
     # Background
-    svg_parts.append(f'<rect width="1180" height="{total_h}" fill="{BG}"/>')
+    svg_parts.append(f'<rect width="1180" height="{total_h}" fill="{colors["BG"]}"/>')
     
     # Gradient defs
-    svg_parts.append('''<defs>
+    svg_parts.append(f'''<defs>
 <linearGradient id="acc_line" x1="0" y1="0" x2="1" y2="0">
-  <stop offset="0" stop-color="#00FF41">
-    <animate attributeName="stop-color" values="#00FF41;#00CC33;#00FF41" dur="10s" repeatCount="indefinite"/>
+  <stop offset="0" stop-color="{colors["ACCENT"]}">
+    <animate attributeName="stop-color" values="{colors["ACCENT"]};#00CC33;{colors["ACCENT"]}" dur="10s" repeatCount="indefinite"/>
   </stop>
   <stop offset="1" stop-color="#00CC33">
-    <animate attributeName="stop-color" values="#00CC33;#00FF41;#00CC33" dur="10s" repeatCount="indefinite"/>
+    <animate attributeName="stop-color" values="#00CC33;{colors["ACCENT"]};#00CC33" dur="10s" repeatCount="indefinite"/>
   </stop>
 </linearGradient>
 </defs>''')
     
     # Header
     svg_parts.append(
-        f'<text x="7" y="18" font-size="11" letter-spacing="2" fill="{ACCENT}">'
+        f'<text x="7" y="18" font-size="11" letter-spacing="2" fill="{colors["ACCENT"]}">'
         f'PROJECTS.LIST</text>'
     )
     svg_parts.append(
-        f'<text x="135" y="18" font-size="10" fill="{TEXT_MUTED}">'
+        f'<text x="135" y="18" font-size="10" fill="{colors["TEXT_MUTED"]}">'
         f'./projects.sh --all</text>'
     )
     svg_parts.append(
@@ -323,7 +345,7 @@ def generate_projects_svg():
         card_x = MARGIN_X + col * (CARD_W + COL_GAP)
         card_y = MARGIN_TOP + row * (CARD_H + ROW_GAP)
         
-        svg_parts.append(project_card_svg(proj, card_x, card_y, delay))
+        svg_parts.append(project_card_svg(proj, card_x, card_y, delay, colors))
         delay += 0.18
     
     svg_parts.append('</svg>')
@@ -332,11 +354,13 @@ def generate_projects_svg():
 
 
 if __name__ == "__main__":
-    svg = generate_projects_svg()
-    
     import os
-    output_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "projects.svg")
-    with open(output_path, "w", encoding="utf-8") as f:
-        f.write(svg)
     
-    print(f"✅ Written {output_path} ({os.path.getsize(output_path):,} bytes)")
+    for theme in ["dark", "light"]:
+        svg = generate_projects_svg(theme)
+        
+        output_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), f"projects-{theme}.svg")
+        with open(output_path, "w", encoding="utf-8") as f:
+            f.write(svg)
+        
+        print(f"✅ Written {output_path} ({os.path.getsize(output_path):,} bytes)")

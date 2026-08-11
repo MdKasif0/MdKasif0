@@ -51,9 +51,9 @@
 
 <div align="center">
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/MdKasif0/MdKasif0/main/projects.svg">
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/MdKasif0/MdKasif0/main/projects.svg">
-  <img alt="Projects List" src="https://raw.githubusercontent.com/MdKasif0/MdKasif0/main/projects.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/MdKasif0/MdKasif0/main/projects-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/MdKasif0/MdKasif0/main/projects-light.svg">
+  <img alt="Projects List" src="https://raw.githubusercontent.com/MdKasif0/MdKasif0/main/projects-light.svg">
 </picture>
 </div>
 
