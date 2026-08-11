@@ -33,8 +33,12 @@ ANIM_DUR = "0.9s"
 
 def download_image(url):
     """Download an image from URL and return as PIL Image."""
+    import ssl
+    ctx = ssl.create_default_context()
+    ctx.check_hostname = False
+    ctx.verify_mode = ssl.CERT_NONE
     req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
-    data = urllib.request.urlopen(req).read()
+    data = urllib.request.urlopen(req, context=ctx).read()
     return Image.open(io.BytesIO(data))
 
 def create_dev_icon(size=400):
