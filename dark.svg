@@ -1,0 +1,187 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400" fill="none">
+  <defs>
+    <!-- Matrix rain effect -->
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&amp;display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&amp;display=swap');
+
+      @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      @keyframes pulse {
+        0%, 100% { opacity: 0.6; }
+        50% { opacity: 1; }
+      }
+      @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+      }
+      @keyframes matrixDrop {
+        0% { opacity: 0; transform: translateY(-30px); }
+        10% { opacity: 0.8; }
+        90% { opacity: 0.3; }
+        100% { opacity: 0; transform: translateY(400px); }
+      }
+      @keyframes glowPulse {
+        0%, 100% { filter: drop-shadow(0 0 4px #00FF41); }
+        50% { filter: drop-shadow(0 0 12px #00FF41) drop-shadow(0 0 24px #00FF4166); }
+      }
+      @keyframes scanline {
+        0% { transform: translateY(-100%); }
+        100% { transform: translateY(400px); }
+      }
+
+      .title { 
+        font-family: 'Space Grotesk', 'JetBrains Mono', monospace; 
+        font-weight: 800; 
+        font-size: 64px;
+        fill: #00FF41;
+        animation: fadeInUp 0.8s ease-out, glowPulse 3s ease-in-out infinite;
+      }
+      .subtitle { 
+        font-family: 'JetBrains Mono', monospace; 
+        font-weight: 400; 
+        font-size: 18px; 
+        fill: #00FF41; 
+        opacity: 0.7;
+        animation: fadeInUp 0.8s ease-out 0.2s both;
+      }
+      .tagline {
+        font-family: 'JetBrains Mono', monospace;
+        font-weight: 700;
+        font-size: 22px;
+        fill: #00FF41;
+        opacity: 0.9;
+        animation: fadeInUp 0.8s ease-out 0.4s both;
+      }
+      .cursor {
+        fill: #00FF41;
+        animation: blink 1s step-end infinite;
+      }
+      .matrix-char {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 14px;
+        fill: #00FF41;
+        opacity: 0.15;
+      }
+      .grid-line {
+        stroke: #00FF41;
+        stroke-width: 0.5;
+        opacity: 0.06;
+      }
+      .accent-dot {
+        fill: #00FF41;
+        opacity: 0.3;
+        animation: pulse 2s ease-in-out infinite;
+      }
+      .border-line {
+        stroke: #00FF41;
+        stroke-width: 1;
+        opacity: 0.2;
+      }
+      .corner-bracket {
+        stroke: #00FF41;
+        stroke-width: 2;
+        fill: none;
+        opacity: 0.5;
+      }
+      .status-text {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 12px;
+        fill: #00FF41;
+        opacity: 0.4;
+      }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="400" fill="#0A0A0A"/>
+
+  <!-- Subtle grid pattern -->
+  <line x1="0" y1="0" x2="0" y2="400" class="grid-line"/>
+  <line x1="60" y1="0" x2="60" y2="400" class="grid-line"/>
+  <line x1="120" y1="0" x2="120" y2="400" class="grid-line"/>
+  <line x1="180" y1="0" x2="180" y2="400" class="grid-line"/>
+  <line x1="240" y1="0" x2="240" y2="400" class="grid-line"/>
+  <line x1="300" y1="0" x2="300" y2="400" class="grid-line"/>
+  <line x1="360" y1="0" x2="360" y2="400" class="grid-line"/>
+  <line x1="420" y1="0" x2="420" y2="400" class="grid-line"/>
+  <line x1="480" y1="0" x2="480" y2="400" class="grid-line"/>
+  <line x1="540" y1="0" x2="540" y2="400" class="grid-line"/>
+  <line x1="600" y1="0" x2="600" y2="400" class="grid-line"/>
+  <line x1="660" y1="0" x2="660" y2="400" class="grid-line"/>
+  <line x1="720" y1="0" x2="720" y2="400" class="grid-line"/>
+  <line x1="780" y1="0" x2="780" y2="400" class="grid-line"/>
+  <line x1="840" y1="0" x2="840" y2="400" class="grid-line"/>
+  <line x1="900" y1="0" x2="900" y2="400" class="grid-line"/>
+  <line x1="960" y1="0" x2="960" y2="400" class="grid-line"/>
+  <line x1="1020" y1="0" x2="1020" y2="400" class="grid-line"/>
+  <line x1="1080" y1="0" x2="1080" y2="400" class="grid-line"/>
+  <line x1="1140" y1="0" x2="1140" y2="400" class="grid-line"/>
+  <line x1="1200" y1="0" x2="1200" y2="400" class="grid-line"/>
+  <line x1="0" y1="60" x2="1200" y2="60" class="grid-line"/>
+  <line x1="0" y1="120" x2="1200" y2="120" class="grid-line"/>
+  <line x1="0" y1="180" x2="1200" y2="180" class="grid-line"/>
+  <line x1="0" y1="240" x2="1200" y2="240" class="grid-line"/>
+  <line x1="0" y1="300" x2="1200" y2="300" class="grid-line"/>
+  <line x1="0" y1="360" x2="1200" y2="360" class="grid-line"/>
+
+  <!-- Scattered matrix characters (background decoration) -->
+  <text x="50" y="45" class="matrix-char">0x4B</text>
+  <text x="150" y="85" class="matrix-char">0xFF</text>
+  <text x="980" y="55" class="matrix-char">01101</text>
+  <text x="1050" y="120" class="matrix-char">sudo</text>
+  <text x="80" y="350" class="matrix-char">~/.config</text>
+  <text x="1080" y="340" class="matrix-char">EOF</text>
+  <text x="900" y="370" class="matrix-char">$ npm run dev</text>
+  <text x="50" y="200" class="matrix-char">│</text>
+  <text x="1150" y="200" class="matrix-char">│</text>
+  <text x="200" y="370" class="matrix-char">git push origin main</text>
+  <text x="750" y="45" class="matrix-char">async/await</text>
+  <text x="400" y="380" class="matrix-char">firebase deploy --only hosting</text>
+
+  <!-- Corner brackets -->
+  <polyline points="20,20 20,50" class="corner-bracket"/>
+  <polyline points="20,20 50,20" class="corner-bracket"/>
+  <polyline points="1180,20 1180,50" class="corner-bracket"/>
+  <polyline points="1180,20 1150,20" class="corner-bracket"/>
+  <polyline points="20,380 20,350" class="corner-bracket"/>
+  <polyline points="20,380 50,380" class="corner-bracket"/>
+  <polyline points="1180,380 1180,350" class="corner-bracket"/>
+  <polyline points="1180,380 1150,380" class="corner-bracket"/>
+
+  <!-- Accent dots -->
+  <circle cx="40" cy="100" r="2" class="accent-dot"/>
+  <circle cx="1160" cy="100" r="2" class="accent-dot"/>
+  <circle cx="40" cy="300" r="2" class="accent-dot"/>
+  <circle cx="1160" cy="300" r="2" class="accent-dot"/>
+
+  <!-- Status bar top -->
+  <text x="80" y="38" class="status-text">SYSTEM.ONLINE</text>
+  <text x="1020" y="38" class="status-text">v2.0.26</text>
+
+  <!-- Main content -->
+  <!-- Terminal prompt line -->
+  <text x="340" y="130" class="subtitle">$ whoami</text>
+
+  <!-- Name -->
+  <text x="600" y="210" text-anchor="middle" class="title">MD KASIF</text>
+
+  <!-- Blinking cursor after name -->
+  <rect x="755" y="185" width="3" height="35" class="cursor" rx="1"/>
+
+  <!-- Tagline -->
+  <text x="600" y="260" text-anchor="middle" class="tagline">🚀 High School Dev  ·  AI Whisperer  ·  Code Artist</text>
+
+  <!-- Bottom info -->
+  <text x="600" y="310" text-anchor="middle" class="subtitle">Building AI into Everything · Firebase · Next.js · TypeScript</text>
+
+  <!-- Location tag -->
+  <text x="600" y="365" text-anchor="middle" class="status-text">📍 Bhagalpur, Bihar, India  ·  Making AI less scary, one commit at a time</text>
+
+  <!-- Border lines -->
+  <line x1="100" y1="280" x2="500" y2="280" class="border-line"/>
+  <line x1="700" y1="280" x2="1100" y2="280" class="border-line"/>
+  <circle cx="600" cy="280" r="3" fill="#00FF41" opacity="0.3"/>
+</svg>
