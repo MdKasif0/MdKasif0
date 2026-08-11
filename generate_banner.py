@@ -281,14 +281,17 @@ def build_morphing_stipple(images_data, canvas_w, canvas_h, num_dots, num_layers
         )
 
         for i, layer in enumerate(layers):
-            delay = 0.20 + i * 0.03
+            base_start = (show_start - fade_duration) if idx > 0 else 0.0
+            delay = base_start + 0.20 + (i * 0.03)
+            fraction = 0.75 / total_cycle
+            
             path_d = points_to_svg_path(layer)
             if not path_d:
                 continue
             lines.append(
-                f'<g opacity="0"><animate attributeName="opacity" values="0;1" '
-                f'dur="0.75s" begin="{delay:.2f}s" fill="freeze" '
-                f'calcMode="spline" keyTimes="0;1" keySplines=".4 0 .2 1"/>'
+                f'<g opacity="0"><animate attributeName="opacity" values="0;1;1" '
+                f'dur="{total_cycle:.1f}s" begin="{delay:.2f}s" repeatCount="indefinite" '
+                f'calcMode="spline" keyTimes="0;{fraction:.4f};1" keySplines=".4 0 .2 1; 0 0 1 1"/>'
                 f'<path d="{path_d}"/></g>'
             )
         lines.append('</g>')
