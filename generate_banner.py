@@ -314,15 +314,15 @@ def generate_svg(theme="dark"):
         bg_panel = "#0A101F"
         bg_titlebar = "#0B1222"
         border_subtle = "rgba(255,255,255,0.10)"
-        accent = "#00FF41"
-        accent_secondary = "#00CC33"
+        accent = "#10B981"
+        accent_secondary = "#059669"
         text_primary = "#F8FAFC"
         text_secondary = "#94A3B8"
         text_muted = "rgba(148,163,184,0.35)"
-        dot_color = "#00FF41"
-        dot_border_color = "#00FF41"
-        label_prefix_color = "#00FF41"
-        gradient_stops = ['#00FF41', '#00CC33', '#00FF41']
+        dot_color = "#10B981"
+        dot_border_color = "#10B981"
+        label_prefix_color = "#10B981"
+        gradient_stops = ['#10B981', '#059669', '#10B981']
     else:
         bg_primary = "#F0F4F3"
         bg_panel = "#F8FAF9"
@@ -512,7 +512,7 @@ def generate_svg(theme="dark"):
 <text x="590.0" y="29.0" text-anchor="middle" font-size="12" fill="{text_secondary}">mdkasifuddin123@gmail.com - % ./profile.sh --live</text>
 <text x="38" y="74" font-size="10" letter-spacing="3" fill="{text_secondary}" opacity="0.7">VISUAL.MAP</text>
 <rect x="36" y="84" width="400" height="492" rx="10" fill="none" stroke="{dot_border_color}" stroke-width="2" opacity="0.45" filter="url(#glow3)"/>
-<rect x="36" y="84" width="400" height="492" rx="10" fill="{bg_panel}" stroke="{'rgba(0,255,65,0.35)' if is_dark else 'rgba(5,150,105,0.35)'}"/>
+<rect x="36" y="84" width="400" height="492" rx="10" fill="{bg_panel}" stroke="{'rgba(16,185,129,0.35)' if is_dark else 'rgba(5,150,105,0.35)'}"/>
 <g transform="translate(50,86) scale(1.2400,1.4471)" fill="{dot_color}" shape-rendering="crispEdges">
 {stipple_svg}
 </g>

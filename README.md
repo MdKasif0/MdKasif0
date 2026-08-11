@@ -13,7 +13,7 @@
 
 <!-- Streak — full width -->
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://streak-stats.demolab.com/?user=MdKasif0&hide_border=true&background=0A0A0A&stroke=00FF41&ring=00FF41&fire=FF0000&currStreakLabel=00FF41&sideLabels=00FF41&currStreakNum=00FF41&sideNums=00FF41&dates=00FF4188&titleColor=00FF41&card_width=1180" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://streak-stats.demolab.com/?user=MdKasif0&hide_border=true&background=0A0A0A&stroke=10B981&ring=10B981&fire=FF0000&currStreakLabel=F8FAFC&sideLabels=94A3B8&currStreakNum=F8FAFC&sideNums=F8FAFC&dates=94A3B8&titleColor=10B981&card_width=1180" />
   <img width="100%" src="https://streak-stats.demolab.com/?user=MdKasif0&hide_border=true&background=F8FAF9&stroke=047857&ring=059669&fire=DC2626&currStreakLabel=047857&sideLabels=065F46&currStreakNum=065F46&sideNums=065F46&dates=047857&titleColor=059669&card_width=1180" alt="Kasif's streak" />
 </picture>
 
@@ -21,11 +21,11 @@
 
 <!-- Stats + Top languages — side by side -->
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats-sigma-rosy-28.vercel.app/api?username=MdKasif0&show_icons=true&count_private=true&include_all_commits=true&hide_rank=true&hide_border=true&title_color=00FF41&icon_color=00FF41&text_color=00FF41&bg_color=0A0A0A&card_width=500" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats-sigma-rosy-28.vercel.app/api?username=MdKasif0&show_icons=true&count_private=true&include_all_commits=true&hide_rank=true&hide_border=true&title_color=10B981&icon_color=10B981&text_color=F8FAFC&bg_color=0A0A0A&card_width=500" />
   <img width="49%" src="https://github-readme-stats-sigma-rosy-28.vercel.app/api?username=MdKasif0&show_icons=true&count_private=true&include_all_commits=true&hide_rank=true&hide_border=true&title_color=059669&icon_color=059669&text_color=065F46&bg_color=F8FAF9&card_width=500" alt="Kasif's GitHub stats" />
 </picture>
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats-sigma-rosy-28.vercel.app/api/top-langs/?username=MdKasif0&layout=compact&langs_count=8&hide_border=true&title_color=00FF41&text_color=00FF41&bg_color=0A0A0A&card_width=500" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats-sigma-rosy-28.vercel.app/api/top-langs/?username=MdKasif0&layout=compact&langs_count=8&hide_border=true&title_color=10B981&text_color=F8FAFC&bg_color=0A0A0A&card_width=500" />
   <img width="49%" src="https://github-readme-stats-sigma-rosy-28.vercel.app/api/top-langs/?username=MdKasif0&layout=compact&langs_count=8&hide_border=true&title_color=059669&text_color=065F46&bg_color=F8FAF9&card_width=500" alt="Top languages" />
 </picture>
 
@@ -126,27 +126,27 @@
 <div align="center">
 
 <a href="https://hellokasif.netlify.app">
-  <img src="https://img.shields.io/badge/Portfolio-0A0A0A?style=for-the-badge&logoColor=white&labelColor=0A0A0A&logo=data:image/svg+xml;base64,PHN2ZyByb2xlPSJpbWciIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBmaWxsPSIjMDBGRjQxIj48cGF0aCBkPSJNMTIgMkM2LjQ4IDIgMiA2LjQ4IDIgMTJzNC40OCAxMCAxMCAxMCAxMC00LjQ4IDEwLTEwUzE3LjUyIDIgMTIgMnptLTEgMTcuOTNjLTMuOTUtLjQ5LTctMy44NS03LTcuOTMgMC0uNjIuMDgtMS4yMS4yMS0xLjc5TDkgMTV2MWMwIDEuMS45IDIgMiAydjEuOTN6bTYuOS0yLjU0Yy0uMjYtLjgxLTEtMS4zOS0xLjktMS4zOWgtMXYtM2MwLS41NS0uNDUtMS0xLTFIOHYtMmgyYy41NSAwIDEtLjQ1IDEtMVY3aDJjMS4xIDAgMi0uOSAyLTJ2LS40MWMyLjkzIDEuMTkgNSA0LjA2IDUgNy40MSAwIDIuMDgtLjggMy45Ny0yLjEgNS4zOXoiLz48L3N2Zz4=" alt="Portfolio" />
+  <img src="https://img.shields.io/badge/Portfolio-0A0A0A?style=for-the-badge&logoColor=white&labelColor=0A0A0A&logo=data:image/svg+xml;base64,PHN2ZyByb2xlPSJpbWciIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBmaWxsPSIjMTBCOTgxIj48cGF0aCBkPSJNMTIgMkM2LjQ4IDIgMiA2LjQ4IDIgMTJzNC40OCAxMCAxMCAxMCAxMC00LjQ4IDEwLTEwUzE3LjUyIDIgMTIgMnptLTEgMTcuOTNjLTMuOTUtLjQ5LTctMy44NS03LTcuOTMgMC0uNjIuMDgtMS4yMS4yMS0xLjc5TDkgMTV2MWMwIDEuMS45IDIgMiAydjEuOTN6bTYuOS0yLjU0Yy0uMjYtLjgxLTEtMS4zOS0xLjktMS4zOWgtMXYtM2MwLS41NS0uNDUtMS0xLTFIOHYtMmgyYy41NSAwIDEtLjQ1IDEtMVY3aDJjMS4xIDAgMi0uOSAyLTJ2LS40MWMyLjkzIDEuMTkgNSA0LjA2IDUgNy40MSAwIDIuMDgtLjggMy45Ny0yLjEgNS4zOXoiLz48L3N2Zz4=" alt="Portfolio" />
 </a>
 &nbsp;&nbsp;
 <a href="https://twitter.com/md_kasif_uddin">
-  <img src="https://img.shields.io/badge/Twitter-0A0A0A?style=for-the-badge&logo=x&logoColor=00FF41&labelColor=0A0A0A" alt="Twitter" />
+  <img src="https://img.shields.io/badge/Twitter-0A0A0A?style=for-the-badge&logo=x&logoColor=10B981&labelColor=0A0A0A" alt="Twitter" />
 </a>
 &nbsp;&nbsp;
 <a href="https://www.instagram.com/M_Kasif_Uddin/">
-  <img src="https://img.shields.io/badge/Instagram-0A0A0A?style=for-the-badge&logo=instagram&logoColor=00FF41&labelColor=0A0A0A" alt="Instagram" />
+  <img src="https://img.shields.io/badge/Instagram-0A0A0A?style=for-the-badge&logo=instagram&logoColor=10B981&labelColor=0A0A0A" alt="Instagram" />
 </a>
 &nbsp;&nbsp;
 <a href="mailto:mdkasifuddin123@gmail.com">
-  <img src="https://img.shields.io/badge/Email-0A0A0A?style=for-the-badge&logo=gmail&logoColor=00FF41&labelColor=0A0A0A" alt="Email" />
+  <img src="https://img.shields.io/badge/Email-0A0A0A?style=for-the-badge&logo=gmail&logoColor=10B981&labelColor=0A0A0A" alt="Email" />
 </a>
 &nbsp;&nbsp;
 <a href="https://github.com/MdKasif0">
-  <img src="https://img.shields.io/badge/GitHub-0A0A0A?style=for-the-badge&logo=github&logoColor=00FF41&labelColor=0A0A0A" alt="GitHub" />
+  <img src="https://img.shields.io/badge/GitHub-0A0A0A?style=for-the-badge&logo=github&logoColor=10B981&labelColor=0A0A0A" alt="GitHub" />
 </a>
 &nbsp;&nbsp;
 <a href="https://buymeacoffee.com/mdkasif">
-  <img src="https://img.shields.io/badge/Buy%20Me%20A%20Coffee-0A0A0A?style=for-the-badge&logo=buy-me-a-coffee&logoColor=00FF41&labelColor=0A0A0A" alt="Buy Me A Coffee" />
+  <img src="https://img.shields.io/badge/Buy%20Me%20A%20Coffee-0A0A0A?style=for-the-badge&logo=buy-me-a-coffee&logoColor=10B981&labelColor=0A0A0A" alt="Buy Me A Coffee" />
 </a>
 
 </div>
@@ -157,9 +157,9 @@
 
 <div align="center">
 
-![Profile Views](https://komarev.com/ghpvc/?username=MdKasif0&color=00ff41&style=flat-square&label=VISITORS)
-![GitHub Followers](https://img.shields.io/github/followers/MdKasif0?label=FOLLOWERS&style=flat-square&color=00ff41&labelColor=000000)
-![GitHub Stars](https://img.shields.io/github/stars/MdKasif0?label=STARS&style=flat-square&color=00ff41&labelColor=000000&affiliations=OWNER)
+![Profile Views](https://komarev.com/ghpvc/?username=MdKasif0&color=10B981&style=flat-square&label=VISITORS)
+![GitHub Followers](https://img.shields.io/github/followers/MdKasif0?label=FOLLOWERS&style=flat-square&color=10b981&labelColor=000000)
+![GitHub Stars](https://img.shields.io/github/stars/MdKasif0?label=STARS&style=flat-square&color=10b981&labelColor=000000&affiliations=OWNER)
 
 </div>
 
