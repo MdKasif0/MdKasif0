@@ -65,9 +65,6 @@
 
 ### 🛠️ TECH ARSENAL
 
-<details>
-<summary>💻 Click to Expand My Stack</summary>
-<br/>
 
 <table>
 <tr>
@@ -116,8 +113,6 @@
 </td>
 </tr>
 </table>
-
-</details>
 
 </div>
 
