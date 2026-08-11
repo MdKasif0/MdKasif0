@@ -63,29 +63,32 @@ def create_profile_stipple_source(image):
     return ImageOps.invert(edges).filter(ImageFilter.MinFilter(3))
 
 def create_dev_icon(size=400):
-    """Create a simple developer/code icon."""
-    img = Image.new("L", (size, size), 255)
-    draw = ImageDraw.Draw(img)
+    """Load the user's dev logo and prep it for stipple art."""
+    icon_path = os.path.join(OUTPUT_DIR, "dev-icon-source.png")
+    if not os.path.exists(icon_path):
+        return Image.new("L", (size, size), 255)
+        
+    img = Image.open(icon_path).convert("RGBA")
     
-    # Draw code brackets < / >
-    cx, cy = size // 2, size // 2
-    s = size // 3
+    # Create white background and composite
+    bg = Image.new("RGBA", img.size, (255, 255, 255, 255))
+    bg.paste(img, (0, 0), img)
     
-    # Left bracket <
-    draw.line([(cx - s, cy), (cx - s*1.6, cy - s*0.7)], fill=0, width=max(size//25, 4))
-    draw.line([(cx - s, cy), (cx - s*1.6, cy + s*0.7)], fill=0, width=max(size//25, 4))
+    # Convert to grayscale
+    img = bg.convert("L")
     
-    # Right bracket >
-    draw.line([(cx + s, cy), (cx + s*1.6, cy - s*0.7)], fill=0, width=max(size//25, 4))
-    draw.line([(cx + s, cy), (cx + s*1.6, cy + s*0.7)], fill=0, width=max(size//25, 4))
+    # Resize to fit within size bounds
+    img.thumbnail((size, size), Image.LANCZOS)
     
-    # Forward slash /
-    draw.line([(cx + s*0.5, cy - s*0.9), (cx - s*0.5, cy + s*0.9)], fill=0, width=max(size//25, 4))
+    # Center on white canvas
+    final_img = Image.new("L", (size, size), 255)
+    offset = ((size - img.width) // 2, (size - img.height) // 2)
+    final_img.paste(img, offset)
     
-    # Terminal underscore _
-    draw.line([(cx - s*0.3, cy + s*1.2), (cx + s*0.3, cy + s*1.2)], fill=0, width=max(size//20, 3))
+    # Enhance contrast
+    final_img = ImageEnhance.Contrast(final_img).enhance(2.0)
     
-    return img
+    return final_img
 
 def create_python_icon(size=400):
     """Create a detailed, high-contrast Python emblem for stipple artwork."""
