@@ -1,13 +1,12 @@
 #!/usr/bin/env python3
 """
 Generate stipple-art hero banner SVGs for MdKasif0's GitHub profile.
-Creates dark.svg and light.svg with animated dot-matrix portrait
-that morphs between: profile pic → dev icon → Claude logo → Netlify logo → profile pic
+Creates dark.svg and light.svg with animated dot-matrix artwork
+that loops: profile pic → developer icon → Python logo → profile pic.
 """
 
 import urllib.request
 import io
-import math
 import random
 import sys
 import os
@@ -66,58 +65,26 @@ def create_dev_icon(size=400):
     
     return img
 
-def create_claude_icon(size=400):
-    """Create Claude AI logo - stylized asterisk/starburst."""
+def create_python_icon(size=400):
+    """Create a high-contrast Python mark for the stipple animation."""
     img = Image.new("L", (size, size), 255)
     draw = ImageDraw.Draw(img)
-    
-    cx, cy = size // 2, size // 2
-    r_outer = size * 0.35
-    r_inner = size * 0.12
-    num_rays = 6
-    ray_width = max(size // 12, 6)
-    
-    for i in range(num_rays):
-        angle = math.pi * 2 * i / num_rays - math.pi / 2
-        x1 = cx + math.cos(angle) * r_inner
-        y1 = cy + math.sin(angle) * r_inner
-        x2 = cx + math.cos(angle) * r_outer
-        y2 = cy + math.sin(angle) * r_outer
-        draw.line([(x1, y1), (x2, y2)], fill=0, width=ray_width)
-        # Rounded end caps
-        draw.ellipse([x2 - ray_width//2, y2 - ray_width//2, x2 + ray_width//2, y2 + ray_width//2], fill=0)
-    
-    # Center circle
-    draw.ellipse([cx - r_inner, cy - r_inner, cx + r_inner, cy + r_inner], fill=0)
-    
-    return img
+    scale = size / 400
 
-def create_netlify_icon(size=400):
-    """Create Netlify logo - diamond/parallelogram shape."""
-    img = Image.new("L", (size, size), 255)
-    draw = ImageDraw.Draw(img)
-    
-    cx, cy = size // 2, size // 2
-    s = size * 0.35
-    
-    # Diamond shape
-    points = [
-        (cx, cy - s),      # top
-        (cx + s, cy),      # right
-        (cx, cy + s),      # bottom
-        (cx - s, cy),      # left
-    ]
-    draw.polygon(points, fill=0)
-    
-    # Inner cutout - smaller diamond (white)
-    s2 = s * 0.5
-    points2 = [
-        (cx + s2*0.3, cy - s2*0.5),
-        (cx + s2, cy + s2*0.1),
-        (cx + s2*0.3, cy + s2*0.7),
-        (cx - s2*0.3, cy + s2*0.1),
-    ]
-    draw.polygon(points2, fill=255)
+    def box(left, top, right, bottom):
+        return tuple(round(value * scale) for value in (left, top, right, bottom))
+
+    # The interlocking forms remain recognizable after conversion to dots.
+    draw.rounded_rectangle(box(66, 48, 254, 208), radius=round(44 * scale), fill=0)
+    draw.rectangle(box(66, 119, 157, 246), fill=0)
+    draw.rounded_rectangle(box(146, 191, 334, 352), radius=round(44 * scale), fill=0)
+    draw.rectangle(box(243, 154, 334, 281), fill=0)
+    draw.rounded_rectangle(box(154, 139, 246, 261), radius=round(18 * scale), fill=255)
+
+    eye_radius = max(5, round(10 * scale))
+    for cx, cy in ((204, 91), (196, 309)):
+        draw.ellipse((cx * scale - eye_radius, cy * scale - eye_radius,
+                      cx * scale + eye_radius, cy * scale + eye_radius), fill=255)
     
     return img
 
@@ -260,43 +227,41 @@ def build_morphing_stipple(images_data, canvas_w, canvas_h, num_dots, num_layers
         lines = []
         lines.append(f'<!-- {label} -->')
         
+        # Every shape uses the same repeating timeline. The final portrait is
+        # intentional: it lets the animation return to the profile image before
+        # the next loop begins.
+        fade_duration = 0.55
         if idx == 0:
-            # First image: visible initially, with fade-in layers
-            lines.append(f'<g fill="{fill_color}" shape-rendering="crispEdges">')
-            # Hide after first cycle, show again at the end
-            lines.append(f'<set attributeName="opacity" to="0" begin="{show_end}s"/>')
-            lines.append(f'<set attributeName="opacity" to="1" begin="{total_cycle}s"/>')
-            
-            for i, layer in enumerate(layers):
-                delay = 0.20 + i * 0.03
-                path_d = points_to_svg_path(layer)
-                if not path_d:
-                    continue
-                lines.append(
-                    f'<g opacity="0"><animate attributeName="opacity" values="0;1" '
-                    f'dur="0.9s" begin="{delay:.2f}s" fill="freeze" '
-                    f'calcMode="spline" keyTimes="0;1" keySplines=".4 0 .2 1"/>'
-                    f'<path d="{path_d}"/></g>'
-                )
-            lines.append('</g>')
+            key_times = f"0;{(show_end - fade_duration) / total_cycle:.4f};{show_end / total_cycle:.4f};1"
+            values = "1;1;0;0"
+        elif idx == num_images - 1:
+            key_times = f"0;{(show_start - fade_duration) / total_cycle:.4f};{show_start / total_cycle:.4f};1"
+            values = "0;0;1;1"
         else:
-            # Subsequent images: hidden initially, shown during their window
-            lines.append(f'<g fill="{fill_color}" shape-rendering="crispEdges" opacity="0">')
-            lines.append(f'<set attributeName="opacity" to="1" begin="{show_start}s"/>')
-            lines.append(f'<set attributeName="opacity" to="0" begin="{show_end}s"/>')
-            
-            for i, layer in enumerate(layers):
-                delay = show_start + 0.10 + i * 0.03
-                path_d = points_to_svg_path(layer)
-                if not path_d:
-                    continue
-                lines.append(
-                    f'<g opacity="0"><animate attributeName="opacity" values="0;1" '
-                    f'dur="0.6s" begin="{delay:.2f}s" fill="freeze" '
-                    f'calcMode="spline" keyTimes="0;1" keySplines=".4 0 .2 1"/>'
-                    f'<path d="{path_d}"/></g>'
-                )
-            lines.append('</g>')
+            key_times = (
+                f"0;{(show_start - fade_duration) / total_cycle:.4f};{show_start / total_cycle:.4f};"
+                f"{(show_end - fade_duration) / total_cycle:.4f};{show_end / total_cycle:.4f};1"
+            )
+            values = "0;0;1;1;0;0"
+
+        lines.append(f'<g fill="{fill_color}" shape-rendering="crispEdges" opacity="0">')
+        lines.append(
+            f'<animate attributeName="opacity" values="{values}" keyTimes="{key_times}" '
+            f'dur="{total_cycle:.1f}s" repeatCount="indefinite"/>'
+        )
+
+        for i, layer in enumerate(layers):
+            delay = 0.20 + i * 0.03
+            path_d = points_to_svg_path(layer)
+            if not path_d:
+                continue
+            lines.append(
+                f'<g opacity="0"><animate attributeName="opacity" values="0;1" '
+                f'dur="0.75s" begin="{delay:.2f}s" fill="freeze" '
+                f'calcMode="spline" keyTimes="0;1" keySplines=".4 0 .2 1"/>'
+                f'<path d="{path_d}"/></g>'
+            )
+        lines.append('</g>')
         
         all_groups.append("\n".join(lines))
     
@@ -310,33 +275,35 @@ def generate_svg(theme="dark"):
     
     # Theme colors
     if is_dark:
-        bg_primary = "#070B16"
-        bg_panel = "#0A101F"
-        bg_titlebar = "#0B1222"
-        border_subtle = "rgba(255,255,255,0.10)"
-        accent = "#10B981"
-        accent_secondary = "#059669"
-        text_primary = "#F8FAFC"
-        text_secondary = "#94A3B8"
-        text_muted = "rgba(148,163,184,0.35)"
-        dot_color = "#10B981"
-        dot_border_color = "#10B981"
-        label_prefix_color = "#10B981"
-        gradient_stops = ['#10B981', '#059669', '#10B981']
+        bg_primary = "#080A1F"
+        bg_panel = "#0D1030"
+        bg_titlebar = "#0C0E26"
+        border_subtle = "rgba(196,181,253,0.16)"
+        accent = "#22D3EE"
+        accent_secondary = "#7C3AED"
+        text_primary = "#F5F3FF"
+        text_secondary = "#A5B4FC"
+        text_muted = "rgba(196,181,253,0.32)"
+        dot_color = "#E879F9"
+        dot_border_color = "#22D3EE"
+        label_prefix_color = "#67E8F9"
+        panel_border = "rgba(34,211,238,0.38)"
+        gradient_stops = ['#22D3EE', '#7C3AED', '#E879F9']
     else:
-        bg_primary = "#F0F4F3"
-        bg_panel = "#F8FAF9"
-        bg_titlebar = "#EDF2F0"
-        border_subtle = "rgba(0,0,0,0.08)"
-        accent = "#059669"
-        accent_secondary = "#047857"
-        text_primary = "#0F172A"
-        text_secondary = "#475569"
-        text_muted = "rgba(71,85,105,0.30)"
-        dot_color = "#047857"
-        dot_border_color = "#059669"
-        label_prefix_color = "#059669"
-        gradient_stops = ['#059669', '#047857', '#059669']
+        bg_primary = "#F7F5FF"
+        bg_panel = "#FFFFFF"
+        bg_titlebar = "#F0EDFF"
+        border_subtle = "rgba(91,33,182,0.14)"
+        accent = "#0891B2"
+        accent_secondary = "#6D28D9"
+        text_primary = "#1E1B4B"
+        text_secondary = "#5B21B6"
+        text_muted = "rgba(76,29,149,0.26)"
+        dot_color = "#C026D3"
+        dot_border_color = "#0891B2"
+        label_prefix_color = "#0E7490"
+        panel_border = "rgba(8,145,178,0.32)"
+        gradient_stops = ['#0891B2', '#6D28D9', '#C026D3']
     
     # ── Download/create images ──
     print(f"[{theme}] Downloading profile picture...")
@@ -344,16 +311,15 @@ def generate_svg(theme="dark"):
     
     print(f"[{theme}] Creating icon images...")
     dev_img = create_dev_icon(400)
-    claude_img = create_claude_icon(400)
-    netlify_img = create_netlify_icon(400)
+    python_img = create_python_icon(400)
     
     # ── Generate stipple art ──
     print(f"[{theme}] Generating stipple art (this may take a moment)...")
     images_data = [
         (profile_img, "Profile Picture"),
         (dev_img, "Developer Icon"),
-        (claude_img, "Claude Logo"),
-        (netlify_img, "Netlify Logo"),
+        (python_img, "Python Logo"),
+        (profile_img, "Profile Picture (Loop Return)"),
     ]
     
     stipple_svg = build_morphing_stipple(
@@ -509,10 +475,10 @@ def generate_svg(theme="dark"):
 <circle cx="30" cy="25.0" r="5.5" fill="#ff5f56"/>
 <circle cx="50" cy="25.0" r="5.5" fill="#ffbd2e"/>
 <circle cx="70" cy="25.0" r="5.5" fill="#27c93f"/>
-<text x="590.0" y="29.0" text-anchor="middle" font-size="12" fill="{text_secondary}">mdkasifuddin123@gmail.com - % ./profile.sh --live</text>
+<text x="590.0" y="29.0" text-anchor="middle" font-size="12" fill="{text_secondary}">kasif@github: ~/profile — ./system.live</text>
 <text x="38" y="74" font-size="10" letter-spacing="3" fill="{text_secondary}" opacity="0.7">VISUAL.MAP</text>
 <rect x="36" y="84" width="400" height="492" rx="10" fill="none" stroke="{dot_border_color}" stroke-width="2" opacity="0.45" filter="url(#glow3)"/>
-<rect x="36" y="84" width="400" height="492" rx="10" fill="{bg_panel}" stroke="{'rgba(16,185,129,0.35)' if is_dark else 'rgba(5,150,105,0.35)'}"/>
+<rect x="36" y="84" width="400" height="492" rx="10" fill="{bg_panel}" stroke="{panel_border}"/>
 <g transform="translate(50,86) scale(1.2400,1.4471)" fill="{dot_color}" shape-rendering="crispEdges">
 {stipple_svg}
 </g>

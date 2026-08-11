@@ -1,5 +1,5 @@
-<!-- ===== THEME-AWARE HERO BANNER ===== -->
-<!-- GitHub automatically shows dark.svg in dark mode and light.svg in light mode -->
+<!-- ===== NEON SYSTEM HERO ===== -->
+<!-- GitHub automatically selects the violet/cyan dark or light hero. -->
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/MdKasif0/MdKasif0/main/dark.svg">
