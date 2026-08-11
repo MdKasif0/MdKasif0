@@ -13,8 +13,8 @@
 
 <!-- Streak — full width -->
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://streak-stats.demolab.com/?user=MdKasif0&hide_border=true&background=0A0A0A&stroke=10B981&ring=10B981&fire=FF0000&currStreakLabel=F8FAFC&sideLabels=94A3B8&currStreakNum=F8FAFC&sideNums=F8FAFC&dates=94A3B8&titleColor=10B981&card_width=1180" />
-  <img width="100%" src="https://streak-stats.demolab.com/?user=MdKasif0&hide_border=true&background=F8FAF9&stroke=047857&ring=059669&fire=DC2626&currStreakLabel=047857&sideLabels=065F46&currStreakNum=065F46&sideNums=065F46&dates=047857&titleColor=059669&card_width=1180" alt="Kasif's streak" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://streak-stats.demolab.com/?user=MdKasif0&hide_border=true&background=0A0A0A&stroke=10B981&ring=10B981&fire=FF0000&currStreakLabel=F8FAFC&sideLabels=94A3B8&currStreakNum=F8FAFC&sideNums=F8FAFC&dates=94A3B8&title_color=10B981&card_width=1180&v=1" />
+  <img width="100%" src="https://streak-stats.demolab.com/?user=MdKasif0&hide_border=true&background=F8FAF9&stroke=047857&ring=059669&fire=DC2626&currStreakLabel=047857&sideLabels=065F46&currStreakNum=065F46&sideNums=065F46&dates=047857&title_color=059669&card_width=1180&v=1" alt="Kasif's streak" />
 </picture>
 
 <br/>
