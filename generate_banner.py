@@ -5,24 +5,22 @@ Creates dark.svg and light.svg with animated dot-matrix artwork
 that loops: profile pic → developer icon → Python logo → profile pic.
 """
 
-import urllib.request
-import io
 import random
 import sys
 import os
 
 # Check for Pillow
 try:
-    from PIL import Image, ImageDraw, ImageFont
+    from PIL import Image, ImageDraw, ImageEnhance, ImageFilter, ImageOps
 except ImportError:
     print("Installing Pillow...")
     import subprocess
     subprocess.check_call([sys.executable, "-m", "pip", "install", "Pillow", "-q"])
-    from PIL import Image, ImageDraw, ImageFont
+    from PIL import Image, ImageDraw, ImageEnhance, ImageFilter, ImageOps
 
 # ── CONFIG ──
-GITHUB_USER = "MdKasif0"
 OUTPUT_DIR = os.path.dirname(os.path.abspath(__file__))
+PROFILE_SOURCE_PATH = os.path.join(OUTPUT_DIR, "profile-source.png")
 CANVAS_W, CANVAS_H = 320, 360  # Higher-resolution stipple canvas
 DOT_DENSITY = 10000  # Dense enough to preserve facial and logo details
 NUM_LAYERS = 12  # Number of animation layers for fade-in
@@ -30,15 +28,39 @@ ANIM_DUR = "0.9s"
 
 # ── DOWNLOAD / CREATE SOURCE IMAGES ──
 
-def download_image(url):
-    """Download an image from URL and return as PIL Image."""
-    import ssl
-    ctx = ssl.create_default_context()
-    ctx.check_hostname = False
-    ctx.verify_mode = ssl.CERT_NONE
-    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
-    data = urllib.request.urlopen(req, context=ctx).read()
-    return Image.open(io.BytesIO(data))
+def load_profile_image():
+    """Load the checked-in portrait source used for the hero animation."""
+    if not os.path.exists(PROFILE_SOURCE_PATH):
+        raise FileNotFoundError(
+            f"Profile source is missing: {PROFILE_SOURCE_PATH}. "
+            "Add profile-source.png before generating the banner."
+        )
+    return Image.open(PROFILE_SOURCE_PATH).convert("RGB")
+
+
+def create_profile_stipple_source(image):
+    """Turn the portrait into bold line art so dots form a readable face."""
+    target_ratio = CANVAS_W / CANVAS_H
+    width, height = image.size
+    source_ratio = width / height
+
+    if source_ratio > target_ratio:
+        crop_width = round(height * target_ratio)
+        crop_left = (width - crop_width) // 2
+        image = image.crop((crop_left, 0, crop_left + crop_width, height))
+    else:
+        crop_height = round(width / target_ratio)
+        crop_top = max(0, (height - crop_height) // 3)
+        image = image.crop((0, crop_top, width, crop_top + crop_height))
+
+    grayscale = ImageOps.grayscale(image)
+    grayscale = ImageEnhance.Contrast(grayscale).enhance(1.6)
+    edges = grayscale.filter(ImageFilter.FIND_EDGES)
+    edges = ImageOps.autocontrast(edges, cutoff=2)
+
+    # FIND_EDGES creates light strokes on black; invert it because the dot
+    # sampler uses darkness as density. MinFilter gently thickens the lines.
+    return ImageOps.invert(edges).filter(ImageFilter.MinFilter(3))
 
 def create_dev_icon(size=400):
     """Create a simple developer/code icon."""
@@ -307,8 +329,8 @@ def generate_svg(theme="dark"):
         gradient_stops = ['#059669', '#10B981', '#22C55E']
     
     # ── Download/create images ──
-    print(f"[{theme}] Downloading profile picture...")
-    profile_img = download_image(f"https://github.com/{GITHUB_USER}.png?size=400")
+    print(f"[{theme}] Loading and tracing profile picture...")
+    profile_img = create_profile_stipple_source(load_profile_image())
     
     print(f"[{theme}] Creating icon images...")
     dev_img = create_dev_icon(400)
