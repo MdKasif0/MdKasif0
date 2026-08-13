@@ -1,45 +1,11 @@
 <!-- ===== NEON SYSTEM HERO ===== -->
 <!-- GitHub automatically selects the emerald dark or light hero. -->
 
-<!-- ===== TERMINAL HERO ===== -->
-<div align="center">
-
-<h3><code>kasif@github ~ $ ./contributions.sh</code></h3>
 <picture>
-  <img src="./contrib-heatmap.svg" width="860" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/MdKasif0/MdKasif0/main/dark.svg?v=1">
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/MdKasif0/MdKasif0/main/light.svg?v=1">
+  <img alt="Md Kasif" src="https://raw.githubusercontent.com/MdKasif0/MdKasif0/main/light.svg?v=1">
 </picture>
-
-<br><br>
-
-<h3><code>kasif@github ~ $ whoami</code></h3>
-<table>
-  <tr>
-    <td valign="top"><img src="./kasif-ascii.svg" width="370" /></td>
-    <td valign="top"><img src="./info-card.svg" width="490" /></td>
-  </tr>
-</table>
-
-</div>
-
-<!-- ===== PROJECTS & SKILLS ===== -->
-
-<br>
-<div align="center">
-  <h3><code>kasif@github ~ $ ./projects.sh</code></h3>
-
-<table width="100%" border="0" cellpadding="0" cellspacing="0">
-  <tr>
-    <td align="center">
-      <picture>
-        <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/MdKasif0/MdKasif0/main/projects-dark.svg?v=1">
-        <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/MdKasif0/MdKasif0/main/projects-light.svg?v=1">
-        <img alt="Projects Carousel" src="https://raw.githubusercontent.com/MdKasif0/MdKasif0/main/projects-dark.svg?v=1" width="860">
-      </picture>
-    </td>
-  </tr>
-</table>
-
-</div>
 
 <!-- ===== GITHUB STATS ===== -->
 
