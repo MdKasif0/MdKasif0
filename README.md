@@ -2,9 +2,9 @@
 <!-- GitHub automatically selects the emerald dark or light hero. -->
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/MdKasif0/MdKasif0/main/dark.svg?v=1">
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/MdKasif0/MdKasif0/main/light.svg?v=1">
-  <img alt="Md Kasif" src="https://raw.githubusercontent.com/MdKasif0/MdKasif0/main/light.svg?v=1">
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/MdKasif0/MdKasif0/main/dark.svg?v=2">
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/MdKasif0/MdKasif0/main/light.svg?v=2">
+  <img alt="Md Kasif" src="https://raw.githubusercontent.com/MdKasif0/MdKasif0/main/light.svg?v=2">
 </picture>
 
 <!-- ===== GITHUB STATS ===== -->

@@ -338,26 +338,15 @@ def generate_svg(theme="dark"):
         panel_border = "rgba(5,150,105,0.32)"
         gradient_stops = ['#059669', '#10B981', '#22C55E']
     
-    # ── Download/create images ──
+    # ── Load profile image ──
     print(f"[{theme}] Loading and tracing profile picture...")
     profile_img = create_profile_stipple_source(load_profile_image())
     
-    print(f"[{theme}] Creating icon images...")
-    dev_img = create_dev_icon(400)
-    python_img = create_python_icon(400)
-    
-    # ── Generate stipple art ──
-    print(f"[{theme}] Generating stipple art (this may take a moment)...")
-    images_data = [
-        (profile_img, "Profile Picture"),
-        (dev_img, "Developer Icon"),
-        (python_img, "Python Logo"),
-        (profile_img, "Profile Picture (Loop Return)"),
-    ]
-    
-    stipple_svg = build_morphing_stipple(
-        images_data, CANVAS_W, CANVAS_H, DOT_DENSITY, NUM_LAYERS,
-        fill_color=dot_color, cycle_duration=4.0
+    # ── Generate stipple art (profile picture only) ──
+    print(f"[{theme}] Generating profile picture stipple art...")
+    profile_points = image_to_stipple_points(profile_img, CANVAS_W, CANVAS_H, DOT_DENSITY)
+    stipple_svg = build_stipple_group(
+        profile_points, NUM_LAYERS, base_delay=0.20, fill_color=dot_color, anim_dur=ANIM_DUR
     )
     stipple_scale_x = 372 / CANVAS_W
     stipple_scale_y = 492 / CANVAS_H
