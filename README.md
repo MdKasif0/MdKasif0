@@ -64,13 +64,13 @@
 ## 📈 Profile Summary Charts
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/MdKasif0/MdKasif0/main/profile-summary-card-output/radical/0-profile-details.svg" alt="Profile Details" />
+  <img src="https://raw.githubusercontent.com/MdKasif0/MdKasif0/main/profile-summary-card-output/radical/0-profile-details.svg?v=1" alt="Profile Details" />
   <br/>
-  <img src="https://raw.githubusercontent.com/MdKasif0/MdKasif0/main/profile-summary-card-output/radical/1-repos-per-language.svg" alt="Top Languages by Repo" />
-  <img src="https://raw.githubusercontent.com/MdKasif0/MdKasif0/main/profile-summary-card-output/radical/2-most-commit-language.svg" alt="Top Languages by Commit" />
+  <img src="https://raw.githubusercontent.com/MdKasif0/MdKasif0/main/profile-summary-card-output/radical/1-repos-per-language.svg?v=1" alt="Top Languages by Repo" />
+  <img src="https://raw.githubusercontent.com/MdKasif0/MdKasif0/main/profile-summary-card-output/radical/2-most-commit-language.svg?v=1" alt="Top Languages by Commit" />
   <br/>
-  <img src="https://raw.githubusercontent.com/MdKasif0/MdKasif0/main/profile-summary-card-output/radical/3-stats.svg" alt="Stats" />
-  <img src="https://raw.githubusercontent.com/MdKasif0/MdKasif0/main/profile-summary-card-output/radical/4-productive-time.svg" alt="Commits (UTC)" />
+  <img src="https://raw.githubusercontent.com/MdKasif0/MdKasif0/main/profile-summary-card-output/radical/3-stats.svg?v=1" alt="Stats" />
+  <img src="https://raw.githubusercontent.com/MdKasif0/MdKasif0/main/profile-summary-card-output/radical/4-productive-time.svg?v=1" alt="Commits (UTC)" />
 </div>
 
 <br/>
