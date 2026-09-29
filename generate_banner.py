@@ -62,61 +62,6 @@ def create_profile_stipple_source(image):
     # sampler uses darkness as density. MinFilter gently thickens the lines.
     return ImageOps.invert(edges).filter(ImageFilter.MinFilter(3))
 
-def create_dev_icon(size=400):
-    """Load the user's dev logo and prep it for stipple art."""
-    icon_path = os.path.join(OUTPUT_DIR, "dev-icon-source.png")
-    if not os.path.exists(icon_path):
-        return Image.new("L", (size, size), 255)
-        
-    img = Image.open(icon_path).convert("RGBA")
-    
-    # Create white background and composite
-    bg = Image.new("RGBA", img.size, (255, 255, 255, 255))
-    bg.paste(img, (0, 0), img)
-    
-    # Convert to grayscale
-    img = bg.convert("L")
-    
-    # Resize to fit within size bounds
-    img.thumbnail((size, size), Image.LANCZOS)
-    
-    # Center on white canvas
-    final_img = Image.new("L", (size, size), 255)
-    offset = ((size - img.width) // 2, (size - img.height) // 2)
-    final_img.paste(img, offset)
-    
-    # Enhance contrast
-    final_img = ImageEnhance.Contrast(final_img).enhance(2.0)
-    
-    return final_img
-
-def create_python_icon(size=400):
-    """Load the user's python logo and prep it for stipple art."""
-    icon_path = os.path.join(OUTPUT_DIR, "python-icon-source.png")
-    if not os.path.exists(icon_path):
-        return Image.new("L", (size, size), 255)
-        
-    img = Image.open(icon_path).convert("RGBA")
-    
-    # Create white background and composite
-    bg = Image.new("RGBA", img.size, (255, 255, 255, 255))
-    bg.paste(img, (0, 0), img)
-    
-    # Convert to grayscale
-    img = bg.convert("L")
-    
-    # Resize to fit within size bounds
-    img.thumbnail((size, size), Image.LANCZOS)
-    
-    # Center on white canvas
-    final_img = Image.new("L", (size, size), 255)
-    offset = ((size - img.width) // 2, (size - img.height) // 2)
-    final_img.paste(img, offset)
-    
-    # Enhance contrast
-    final_img = ImageEnhance.Contrast(final_img).enhance(2.0)
-    
-    return final_img
 
 
 def image_to_stipple_points(img, canvas_w, canvas_h, num_dots):
@@ -233,72 +178,6 @@ def build_stipple_group(points, num_layers, base_delay=0.20, fill_color="#00FF41
     lines.append('</g>')
     return "\n".join(lines)
 
-
-def build_morphing_stipple(images_data, canvas_w, canvas_h, num_dots, num_layers,
-                           fill_color, cycle_duration=4.0):
-    """
-    Build multiple stipple groups that cycle through images.
-    Each image shows for cycle_duration seconds, then fades to next.
-    """
-    all_groups = []
-    num_images = len(images_data)
-    total_cycle = cycle_duration * num_images
-    
-    for idx, (img, label) in enumerate(images_data):
-        points = image_to_stipple_points(img, canvas_w, canvas_h, num_dots)
-        
-        # Calculate visibility timing
-        show_start = idx * cycle_duration
-        show_end = show_start + cycle_duration
-        
-        # Create SVG group with visibility animation
-        layers = split_into_layers(points, num_layers)
-        
-        lines = []
-        lines.append(f'<!-- {label} -->')
-        
-        # Every shape uses the same repeating timeline. The final portrait is
-        # intentional: it lets the animation return to the profile image before
-        # the next loop begins.
-        fade_duration = 0.55
-        if idx == 0:
-            key_times = f"0;{(show_end - fade_duration) / total_cycle:.4f};{show_end / total_cycle:.4f};1"
-            values = "1;1;0;0"
-        elif idx == num_images - 1:
-            key_times = f"0;{(show_start - fade_duration) / total_cycle:.4f};{show_start / total_cycle:.4f};1"
-            values = "0;0;1;1"
-        else:
-            key_times = (
-                f"0;{(show_start - fade_duration) / total_cycle:.4f};{show_start / total_cycle:.4f};"
-                f"{(show_end - fade_duration) / total_cycle:.4f};{show_end / total_cycle:.4f};1"
-            )
-            values = "0;0;1;1;0;0"
-
-        lines.append(f'<g fill="{fill_color}" shape-rendering="crispEdges" opacity="0">')
-        lines.append(
-            f'<animate attributeName="opacity" values="{values}" keyTimes="{key_times}" '
-            f'dur="{total_cycle:.1f}s" repeatCount="indefinite"/>'
-        )
-
-        for i, layer in enumerate(layers):
-            base_start = (show_start - fade_duration) if idx > 0 else 0.0
-            delay = base_start + 0.20 + (i * 0.03)
-            fraction = 0.75 / total_cycle
-            
-            path_d = points_to_svg_path(layer)
-            if not path_d:
-                continue
-            lines.append(
-                f'<g opacity="0"><animate attributeName="opacity" values="0;1;1" '
-                f'dur="{total_cycle:.1f}s" begin="{delay:.2f}s" repeatCount="indefinite" '
-                f'calcMode="spline" keyTimes="0;{fraction:.4f};1" keySplines=".4 0 .2 1; 0 0 1 1"/>'
-                f'<path d="{path_d}"/></g>'
-            )
-        lines.append('</g>')
-        
-        all_groups.append("\n".join(lines))
-    
-    return "\n".join(all_groups)
 
 
 def generate_svg(theme="dark"):
