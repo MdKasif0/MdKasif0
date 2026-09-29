@@ -2,7 +2,7 @@
 """
 Generate stipple-art hero banner SVGs for MdKasif0's GitHub profile.
 Creates dark.svg and light.svg with animated dot-matrix artwork
-that loops: profile pic → developer icon → Python logo → profile pic.
+showing only the profile picture in dots.
 """
 
 import random
