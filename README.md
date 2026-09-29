@@ -59,6 +59,22 @@
 
 <br/>
 
+<!-- ===== PROFILE SUMMARY CHARTS ===== -->
+
+## 📈 Profile Summary Charts
+
+<div align="center">
+  <img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=MdKasif0&theme=radical" alt="Profile Details" />
+  <br/>
+  <img src="https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=MdKasif0&theme=radical" alt="Top Languages by Repo" />
+  <img src="https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=MdKasif0&theme=radical" alt="Top Languages by Commit" />
+  <br/>
+  <img src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=MdKasif0&theme=radical" alt="Stats" />
+  <img src="https://github-profile-summary-cards.vercel.app/api/cards/productive-time?username=MdKasif0&theme=radical" alt="Commits (UTC)" />
+</div>
+
+<br/>
+
 <!-- ===== TECH ARSENAL ===== -->
 
 <div align="center">
