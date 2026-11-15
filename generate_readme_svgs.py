@@ -11,6 +11,7 @@ Sans fonts embedded:
     assets/banner-*.svg    the header
     assets/activity-*.svg  weekly contribution chart for the last 12 months
     assets/collabs-*.svg   scrolling strip of brand collaboration logos
+    assets/stack-*.svg     scrolling strip of the tech stack logos
     assets/footer-*.svg    the footer, with the halftone KASIF wordmark
 
 Needs fonttools + brotli (to measure text in the woff2 fonts) and Pillow (logo sizes).
@@ -309,6 +310,57 @@ def collabs(t):
                     "daily.dev, AgentID, Shift, Blackbox AI, Kimi, Unfair.so, ReleaseStack, Made For Collab, Hopper.")
 
 
+
+
+# ───────────────────────────── tech stack strip ─────────────────────────────
+
+def _luminance(hex_):
+    r, g, b = (int(hex_[i:i + 2], 16) / 255 for i in (1, 3, 5))
+    lin = lambda c: c / 12.92 if c <= .03928 else ((c + .055) / 1.055) ** 2.4
+    return .2126 * lin(r) + .7152 * lin(g) + .0722 * lin(b)
+
+
+def stack(t):
+    """The tech stack as two rows of logo pills scrolling in opposite directions, like the collabs strip."""
+    with open(os.path.join(SRC, "tech.json")) as f:
+        icons = json.load(f)["icons"]
+    d = Doc(t, 360)
+    d.fonts |= {"an", "jk"}
+    d.add(glow(d, 1080, 360, 500, 200, t["glowA"] * .7))
+    count = str(len(icons))
+    d.add(f'<g class="a">{d.text(PAD, 70, "WHAT I SHIP WITH /", 13, t["muted"], weight=700, ls=2.6)}</g>',
+          f'<g class="a" style="animation-delay:.1s">{d.text(PAD - 2, 136, "THE STACK", 64, t["text"], fam="an", ls=-2.2)}'
+          f'{title_dot(d, PAD - 2, 136, "THE STACK", 64, -2.2)}</g>',
+          f'<g class="a" style="animation-delay:.2s">{d.text(W - PAD - 150, 130, count, 64, t["red"], fam="an", anchor="end")}'
+          f'{d.text(W - PAD - 136, 108, "tools in", 15, t["text2"])}{d.text(W - PAD - 136, 130, "daily use", 15, t["text2"])}</g>')
+    edge = d.uid("edge")
+    d.defs.append(f'<linearGradient id="{edge}g"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".08" stop-color="#fff"/>'
+                  f'<stop offset=".92" stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>'
+                  f'<mask id="{edge}"><rect width="{W}" height="360" fill="url(#{edge}g)"/></mask>')
+    tile = "#16161E"  # every logo sits on the same dark tile, so brand colours read in both themes
+    half = (len(icons) + 1) // 2
+    for r, row in enumerate([icons[:half], icons[half:]]):
+        cells, x = [], 0
+        for ic in row:
+            color = ic["color"] if _luminance(ic["color"]) > .06 else "#F5F5F5"  # black or near-black marks go white
+            label_w = M["jk"].width(ic["name"], 16, bold=1.045)
+            box = 12 + 40 + 14 + label_w + 24
+            rule = ' fill-rule="evenodd"' if ic["evenodd"] else ""
+            cells.append(f'<rect x="{x:.1f}" y="0" width="{box:.1f}" height="64" rx="14" fill="{t["surface"]}" stroke="{t["line"]}"/>'
+                         f'<rect x="{x + 12:.1f}" y="12" width="40" height="40" rx="10" fill="{tile}"/>'
+                         f'<svg x="{x + 20:.1f}" y="20" width="24" height="24" viewBox="{ic["viewBox"]}"><path d="{ic["d"]}" fill="{color}"{rule}/></svg>'
+                         + d.text(x + 66, 37.5, ic["name"], 16, t["text"], weight=600))
+            x += box + 14
+        set_w = x
+        name = f"st{r}"
+        frames = (f"from{{transform:translateX(0)}}to{{transform:translateX(-{set_w:.0f}px)}}" if r == 0 else
+                  f"from{{transform:translateX(-{set_w:.0f}px)}}to{{transform:translateX(0)}}")
+        d.css.append(f".{name}{{animation:{name} {38 + r * 6}s linear infinite}}@keyframes {name}{{{frames}}}")
+        sid = d.uid("srow")
+        d.defs.append(f'<g id="{sid}">{"".join(cells)}</g>')
+        d.add(f'<g mask="url(#{edge})"><g transform="translate(0 {178 + r * 80})"><g class="{name}">'
+              + "".join(f'<use href="#{sid}" x="{k * set_w:.0f}"/>' for k in range(3)) + "</g></g></g>")
+    return d.render(f"The stack — {len(icons)} tools in daily use", ", ".join(i["name"] for i in icons) + ".")
 
 
 # ───────────────────────────── GitHub data ─────────────────────────────
@@ -675,7 +727,7 @@ def main():
         with open(DATA) as f:
             gh = json.load(f)
     for name, theme in THEMES.items():
-        files = {"banner": banner(theme), "activity": activity(theme, gh), "collabs": collabs(theme), "footer": footer(theme)}
+        files = {"banner": banner(theme), "activity": activity(theme, gh), "collabs": collabs(theme), "stack": stack(theme), "footer": footer(theme)}
         for k, svg in files.items():
             with open(os.path.join(OUT, f"{k}-{name}.svg"), "w", encoding="utf-8") as f:
                 f.write(svg)

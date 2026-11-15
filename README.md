@@ -1,4 +1,4 @@
-<!-- Header, activity chart, logo strip and footer are built by generate_readme_svgs.py and refreshed daily by .github/workflows/generate-svgs.yml -->
+<!-- Header, tech stack, activity chart, logo strip and footer are built by generate_readme_svgs.py and refreshed daily by .github/workflows/generate-svgs.yml -->
 
 <a href="https://kasif-portfolio.netlify.app">
   <picture>
@@ -94,13 +94,10 @@ const kasif = {
 
 ## 🛠️ Tech stack
 
-| | |
-|---|---|
-| **Languages** | <img height="40" alt="TypeScript, JavaScript, Python, Swift" src="https://skillicons.dev/icons?i=ts,js,py,swift"> |
-| **Backend & data** | <img height="40" alt="Node.js, Supabase, Firebase, PostgreSQL, MongoDB" src="https://skillicons.dev/icons?i=nodejs,supabase,firebase,postgres,mongodb"> |
-| **AI & ML** | <img height="40" alt="TensorFlow, OpenCV" src="https://skillicons.dev/icons?i=tensorflow,opencv"> <br> ![OpenAI](https://img.shields.io/badge/OpenAI-05050A?style=flat-square&logo=openai&logoColor=white) ![Gemini](https://img.shields.io/badge/Gemini-05050A?style=flat-square&logo=googlegemini&logoColor=white) ![Hugging Face](https://img.shields.io/badge/Hugging%20Face-05050A?style=flat-square&logo=huggingface&logoColor=FFD21E) ![Groq](https://img.shields.io/badge/Groq-05050A?style=flat-square&logoColor=white) ![OpenRouter](https://img.shields.io/badge/OpenRouter-05050A?style=flat-square&logo=openrouter&logoColor=white) |
-| **Frontend & 3D** | <img height="40" alt="React, Next.js, Tailwind CSS, Three.js, Blender" src="https://skillicons.dev/icons?i=react,nextjs,tailwind,threejs,blender"> |
-| **Tools & deploy** | <img height="40" alt="Git, Docker, Figma, Netlify" src="https://skillicons.dev/icons?i=git,docker,figma,netlify"> <br> ![n8n](https://img.shields.io/badge/n8n-05050A?style=flat-square&logo=n8n&logoColor=EA4B71) ![Cursor](https://img.shields.io/badge/Cursor-05050A?style=flat-square&logo=cursor&logoColor=white) ![Claude Code](https://img.shields.io/badge/Claude%20Code-05050A?style=flat-square&logo=anthropic&logoColor=white) |
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/MdKasif0/MdKasif0/main/assets/stack-dark.svg">
+  <img width="100%" alt="The stack, 28 tools in daily use: TypeScript, JavaScript, Python, Swift, Node.js, Supabase, Firebase, PostgreSQL, MongoDB, TensorFlow, OpenCV, OpenAI, Gemini, Hugging Face, Groq, OpenRouter, React, Next.js, Tailwind CSS, Three.js, Blender, Git, Docker, Figma, Netlify, n8n, Cursor and Claude Code." src="https://raw.githubusercontent.com/MdKasif0/MdKasif0/main/assets/stack-light.svg">
+</picture>
 
 ## 📊 GitHub stats
 
