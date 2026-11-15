@@ -1,4 +1,4 @@
-<!-- Header, tech stack, activity chart, logo strip and footer are built by generate_readme_svgs.py and refreshed daily by .github/workflows/generate-svgs.yml -->
+<!-- Header, about cards, tech stack, activity chart, logo strip and footer are built by generate_readme_svgs.py and refreshed daily by .github/workflows/generate-svgs.yml -->
 
 <a href="https://kasif-portfolio.netlify.app">
   <picture>
@@ -15,16 +15,14 @@
   <img alt="Profile views" src="https://komarev.com/ghpvc/?username=MdKasif0&label=Profile%20views&color=E5322D&style=flat-square">
 </p>
 
-## 👋 About me
+## About me
 
-I'm an AI software engineer and backend architect from India. I take ideas from a rough sketch to a product people can use: the LLM pipeline, the APIs and data model behind it, and an interface that holds up in production. Outside the web I ship native macOS apps and real-time 3D in the browser.
+I'm an **AI software engineer and backend architect** from India. I take ideas from a rough sketch to a product people can use: the LLM pipeline, the APIs and data model behind it, and an interface that holds up in production. Outside the web I ship native macOS apps and real-time 3D in the browser. Right now I'm building [GitRoasted](https://gitroasted.netlify.app) and sharing the process on [X](https://x.com/md_kasif_uddin).
 
-- 🔭 **Building** [GitRoasted](https://gitroasted.netlify.app), which scores any GitHub profile out of 1,000 and lets an AI roast it
-- 🏆 **1st Runner-Up** at InnoSprint 2.0 (D4 Community × Google for Developers) with GigSense
-- 🎓 **B.Tech CSE** at Chandigarh University, first year
-- 📣 **Building in public** on [X](https://x.com/md_kasif_uddin) for 6,500+ followers, with 20+ AI and dev-tool brand collaborations
-- 💼 **Open to freelance work:** AI product MVPs, backend and API builds, and AI features for existing apps
-- ⚡ **Fun fact:** I write Python so AI can replace me faster
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/MdKasif0/MdKasif0/main/assets/about-dark.svg">
+  <img width="100%" alt="Highlights. Currently building: GitRoasted. Recognition: 1st Runner-Up at InnoSprint 2.0 with GigSense. Education: B.Tech CSE, Chandigarh University. Building in public: 6,500+ followers on X and 20+ brand collaborations. Open to freelance: AI product MVPs, backend and API builds, AI features. Fun fact: I write Python so AI can replace me faster." src="https://raw.githubusercontent.com/MdKasif0/MdKasif0/main/assets/about-light.svg">
+</picture>
 
 ```ts
 const kasif = {

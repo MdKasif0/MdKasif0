@@ -9,6 +9,7 @@ visitor's theme), in the brand's red-on-black style with the Anton / Plus Jakart
 Sans fonts embedded:
 
     assets/banner-*.svg    the header
+    assets/about-*.svg     the About me highlight cards
     assets/activity-*.svg  weekly contribution chart for the last 12 months
     assets/collabs-*.svg   scrolling strip of brand collaboration logos
     assets/stack-*.svg     scrolling strip of the tech stack logos
@@ -310,6 +311,53 @@ def collabs(t):
                     "daily.dev, AgentID, Shift, Blackbox AI, Kimi, Unfair.so, ReleaseStack, Made For Collab, Hopper.")
 
 
+
+
+# ───────────────────────────── about: highlight cards ─────────────────────────────
+
+# Simple 24×24 line icons, drawn here so they need no icon font.
+ICONS = {
+    "code": "M8 7l-5 5 5 5M16 7l5 5-5 5M13.5 4l-3 16",
+    "trophy": "M8 4h8v5a4 4 0 0 1-8 0zM8 6H5a3 3 0 0 0 3 4M16 6h3a3 3 0 0 1-3 4M12 13v4M8.5 20h7M10 17h4",
+    "cap": "M2 9l10-5 10 5-10 5zM6 11v5c3 2.5 9 2.5 12 0v-5M22 9v6",
+    "signal": "M12 13.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM8.5 15.5a5 5 0 0 1 0-7M15.5 8.5a5 5 0 0 1 0 7M5.6 18.4a9 9 0 0 1 0-12.8M18.4 5.6a9 9 0 0 1 0 12.8",
+    "briefcase": "M3 8h18v11H3zM8.5 8V5.5h7V8M3 13h18M11 12h2v2h-2z",
+    "bolt": "M13 2L4.5 13.5H12L11 22l8.5-11.5H12z",
+}
+
+HIGHLIGHTS = [
+    ("code", "CURRENTLY BUILDING", "GitRoasted", "Scores any GitHub profile out of 1,000, then lets an AI roast it."),
+    ("trophy", "RECOGNITION", "1st Runner-Up", "InnoSprint 2.0, D4 Community × Google for Developers, with GigSense."),
+    ("cap", "EDUCATION", "B.Tech CSE", "Chandigarh University, Mohali. First year, 2026 to now."),
+    ("signal", "BUILDING IN PUBLIC", "6,500+ on X", "Plus 20+ collaborations with AI and dev-tool brands."),
+    ("briefcase", "OPEN TO FREELANCE", "Available now", "AI product MVPs, backend and API builds, and AI features for existing apps."),
+    ("bolt", "FUN FACT", "Automating myself", "I write Python so AI can replace me faster."),
+]
+
+
+def about(t):
+    cols, gap, ch = 3, 20, 236
+    cw = (W - 2 * 40 - (cols - 1) * gap) / cols
+    rows = (len(HIGHLIGHTS) + cols - 1) // cols
+    H = 40 + rows * ch + (rows - 1) * gap + 40
+    d = Doc(t, H)
+    d.fonts |= {"an", "jk"}
+    d.add(glow(d, 1100, 0, 560, 260, t["glowA"] * .6), glow(d, 120, H, 520, 220, t["glowA"] * .45))
+    for i, (icon, label, title, desc) in enumerate(HIGHLIGHTS):
+        r, c = divmod(i, cols)
+        x, y = 40 + c * (cw + gap), 40 + r * (ch + gap)
+        card = [f'<rect x="{x:.1f}" y="{y}" width="{cw:.1f}" height="{ch}" rx="18" fill="{t["surface"]}" stroke="{t["line"]}"/>',
+                f'<rect x="{x + 26:.1f}" y="{y}" width="56" height="2" fill="{t["red"]}"/>',
+                f'<rect x="{x + 26:.1f}" y="{y + 28}" width="48" height="48" rx="13" fill="rgb({t["glow"]})" fill-opacity=".12" stroke="rgb({t["glow"]})" stroke-opacity=".35"/>',
+                f'<g transform="translate({x + 38:.1f} {y + 40})"><path d="{ICONS[icon]}" fill="none" stroke="{t["red2"]}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></g>',
+                d.text(x + cw - 26, y + 58, f"{i + 1:02d}", 13, t["muted"], weight=700, ls=1.5, anchor="end"),
+                d.text(x + 26, y + 112, label, 11.5, t["red2"], weight=700, ls=2.2),
+                d.text(x + 24, y + 152, title.upper(), 34, t["text"], fam="an", ls=-.4)]
+        for j, line in enumerate(wrap(desc, 15, cw - 52)[:3]):
+            card.append(d.text(x + 26, y + 184 + j * 22, line, 15, t["text2"]))
+        d.add(f'<g class="a" style="animation-delay:{.1 + i * .08:.2f}s">{"".join(card)}</g>')
+    return d.render("About me — highlights",
+                    " ".join(f"{label.title()}: {title}. {desc}" for _, label, title, desc in HIGHLIGHTS))
 
 
 # ───────────────────────────── tech stack strip ─────────────────────────────
@@ -676,7 +724,7 @@ def main():
         with open(DATA) as f:
             gh = json.load(f)
     for name, theme in THEMES.items():
-        files = {"banner": banner(theme), "activity": activity(theme, gh), "collabs": collabs(theme), "stack": stack(theme), "footer": footer(theme)}
+        files = {"banner": banner(theme), "about": about(theme), "activity": activity(theme, gh), "collabs": collabs(theme), "stack": stack(theme), "footer": footer(theme)}
         for k, svg in files.items():
             with open(os.path.join(OUT, f"{k}-{name}.svg"), "w", encoding="utf-8") as f:
                 f.write(svg)
