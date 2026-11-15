@@ -10,6 +10,9 @@ on:
     paths:
       - ".github/workflows/profile-summary-cards.yml"
 
+# The action wipes profile-summary-card-output/ on every run, so each theme is
+# generated with AUTO_PUSH off, stashed, and everything is committed once.
+# gotham = emerald on black (dark mode), vue = emerald on white (light mode).
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -19,9 +22,38 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - uses: vn7n24fzkq/github-profile-summary-cards@release
+
+      - name: Generate dark cards (gotham)
+        uses: vn7n24fzkq/github-profile-summary-cards@release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           USERNAME: ${{ github.repository_owner }}
-          THEME: radical
+          THEME: gotham
+          AUTO_PUSH: false
+
+      - name: Stash dark cards
+        run: |
+          mkdir -p "$RUNNER_TEMP/cards"
+          sudo cp -r profile-summary-card-output/gotham "$RUNNER_TEMP/cards/"
+
+      - name: Generate light cards (vue)
+        uses: vn7n24fzkq/github-profile-summary-cards@release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          USERNAME: ${{ github.repository_owner }}
+          THEME: vue
+          AUTO_PUSH: false
+
+      - name: Combine and commit
+        run: |
+          sudo cp -r "$RUNNER_TEMP/cards/gotham" profile-summary-card-output/
+          sudo chown -R "$(id -u):$(id -g)" profile-summary-card-output
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A profile-summary-card-output
+          git diff --cached --quiet && echo "No changes" && exit 0
+          git commit -m "Generate profile summary cards"
+          git pull --rebase
+          git push

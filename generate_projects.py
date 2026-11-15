@@ -2,6 +2,7 @@
 """Generate projects.svg for MdKasif0's GitHub profile README."""
 
 import math
+import sys
 
 # ── Project Data (from GitHub API) ──
 PROJECTS = [
@@ -53,7 +54,7 @@ PROJECTS = [
     {
         "repo": "MdKasif0/ReadOn",
         "name": "ReadOn",
-        "desc": "Modern reading list and book tracking web application",
+        "desc": "Modern, intelligent news aggregator web app",
         "langs": {"TypeScript": 97, "CSS": 1, "HTML": 1, "JavaScript": 1},
         "tags": ["TypeScript", "React", "Firebase"],
         "stars": 1,
@@ -353,9 +354,68 @@ def generate_projects_svg(theme):
     return "\n".join(svg_parts)
 
 
+def _relative_time(iso_ts):
+    """Turn an ISO-8601 timestamp into a short 'Nd ago' style string."""
+    from datetime import datetime, timezone
+
+    then = datetime.fromisoformat(iso_ts.replace("Z", "+00:00"))
+    days = (datetime.now(timezone.utc) - then).days
+    if days < 1:
+        return "today"
+    if days < 7:
+        return f"{days}d ago"
+    if days < 30:
+        return f"{days // 7}w ago"
+    if days < 365:
+        return f"{days // 30}mo ago"
+    return f"{days // 365}y ago"
+
+
+def _github_get(path):
+    import json
+    import os
+    import urllib.request
+
+    req = urllib.request.Request(
+        f"https://api.github.com{path}",
+        headers={"Accept": "application/vnd.github+json", "User-Agent": "profile-readme-generator"},
+    )
+    token = os.environ.get("GITHUB_TOKEN")
+    if token:
+        req.add_header("Authorization", f"Bearer {token}")
+    with urllib.request.urlopen(req, timeout=20) as resp:
+        return json.load(resp)
+
+
+def refresh_from_github(projects):
+    """Update stars, last-updated time and language split from the GitHub API.
+
+    Any project that fails to fetch keeps its hardcoded values, so the script
+    still works offline.
+    """
+    for proj in projects:
+        try:
+            repo = _github_get(f"/repos/{proj['repo']}")
+            proj["stars"] = repo["stargazers_count"]
+            proj["updated"] = _relative_time(repo["pushed_at"])
+
+            langs = _github_get(f"/repos/{proj['repo']}/languages")
+            total = sum(langs.values())
+            if total:
+                top = sorted(langs.items(), key=lambda kv: kv[1], reverse=True)[:4]
+                pct = {name: max(1, round(size * 100 / total)) for name, size in top}
+                proj["langs"] = pct
+            print(f"↻ {proj['repo']}: ★{proj['stars']}, updated {proj['updated']}")
+        except Exception as exc:  # network errors, rate limits, renamed repos
+            print(f"⚠ {proj['repo']}: using cached values ({exc})")
+
+
 if __name__ == "__main__":
     import os
-    
+
+    if "--offline" not in sys.argv:
+        refresh_from_github(PROJECTS)
+
     for theme in ["dark", "light"]:
         svg = generate_projects_svg(theme)
         
