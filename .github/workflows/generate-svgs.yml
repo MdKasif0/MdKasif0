@@ -1,4 +1,4 @@
-name: Generate Portfolio README Images
+name: Generate README Images
 
 on:
   # Daily refresh of the GitHub contribution graph, streaks, repos and stars
@@ -10,7 +10,7 @@ on:
     branches:
       - main
     paths:
-      - "generate_portfolio.py"
+      - "generate_readme_svgs.py"
       - "assets/src/**"
       - ".github/workflows/generate-svgs.yml"
 
@@ -34,7 +34,7 @@ jobs:
       - name: Generate SVGs
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python generate_portfolio.py
+        run: python generate_readme_svgs.py
 
       - name: Commit changes
         run: |
@@ -42,6 +42,6 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add assets
           git diff --cached --quiet && echo "No changes" && exit 0
-          git commit -m "Regenerate portfolio README images"
+          git commit -m "Regenerate README images"
           git pull --rebase
           git push
