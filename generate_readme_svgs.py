@@ -376,16 +376,27 @@ def banner(t):
     d.add(f'<rect width="{W}" height="420" fill="url(#{gid})" mask="url(#{gm})"/>',
           glow(d, 1060, 230, 360, 300, t["glowA"] * 1.2), glow(d, 120, 420, 420, 160, t["glowA"] * .5))
 
-    # window bar
-    d.add(f'<g class="fade">'
-          + "".join(f'<circle cx="{40 + i * 20}" cy="34" r="6" fill="{col}"/>' for i, col in enumerate(("#FF5F57", "#FEBC2E", "#28C840")))
-          + d.text(112, 39, "~/MdKasif0", 13, t["muted"], weight=600)
-          + d.text(112 + M["jk"].width("~/MdKasif0", 13, bold=1.045) + 6, 39, "/ README.md", 13, t["text2"], weight=600)
-          + f'<rect x="0" y="62" width="{W}" height="1" fill="{t["line"]}"/>'
-          + "</g>")
-    av = "OPEN TO WORK"
-    aw = M["jk"].width(av, 12, 1.6, 1.07)
-    d.add(f'<g class="fade">{pulse_dot(d, W - 40 - aw - 16, 34, t["green"], 3.5)}{d.text(W - 40, 38.5, av, 12, t["text2"], weight=700, ls=1.6, anchor="end")}</g>')
+    # nav bar, the same as the portfolio's: logo mark, KASIF., section links, theme button, "Let's talk"
+    nav = [f'<rect x="24" y="18" width="{W - 48}" height="56" rx="28" fill="{t["nav"]}" stroke="{t["line"]}"/>',
+           '<clipPath id="lm"><rect x="38" y="28" width="36" height="36" rx="18"/></clipPath>',
+           f'<image href="{asset("logo-mark.png", "image/png")}" x="38" y="28" width="36" height="36" clip-path="url(#lm)"/>',
+           d.text(84, 56, "KASIF", 25, t["text"], fam="an", ls=-.4), title_dot(d, 84, 56, "KASIF", 25, -.4)]
+    links = ["Work", "Recognition", "About", "Journey", "Services", "Contact"]
+    widths = [M["jk"].width(l, 14, bold=1.02) for l in links]
+    lx = W / 2 - (sum(widths) + 38 * (len(links) - 1)) / 2
+    for i, (l, lw) in enumerate(zip(links, widths)):
+        nav.append(d.text(lx, 51, l, 14, t["text"] if i == 0 else t["muted"], weight=500))
+        if i == 0:
+            nav.append(f'<rect x="{lx:.1f}" y="59" width="{lw:.1f}" height="1.5" fill="{t["red"]}"/>')
+        lx += lw + 38
+    talk, tw = pill(d, 0, 0, "Let's talk", 14, stroke=t["line2"], weight=600, ls=0, padx=18, h=34)
+    tx = W - 40 - tw - 14
+    nav.append(f'<g transform="translate({tx:.1f} 29)">{talk}{arrow(tw - 6, 11, 9, t["red2"])}</g>')
+    # theme button: a crescent moon in a ring, like the portfolio's toggle
+    mx = tx - 30
+    nav.append(f'<circle cx="{mx:.1f}" cy="46" r="17" fill="none" stroke="{t["line2"]}"/>'
+               f'<path d="M{mx + 4:.1f} 40.5a6.5 6.5 0 1 0 2.6 9.6 5.2 5.2 0 0 1-2.6-9.6z" fill="none" stroke="{t["text"]}" stroke-width="1.4" stroke-linejoin="round"/>')
+    d.add(f'<g class="fade">{"".join(nav)}</g>')
 
     # name, roles, typed tagline
     d.add(f'<g class="a" style="animation-delay:.1s">{d.text(PAD, 128, "HEY THERE, I’M", 13, t["muted"], weight=700, ls=3)}</g>',
