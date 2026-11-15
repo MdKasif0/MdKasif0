@@ -11,6 +11,7 @@ Sans fonts embedded:
     assets/banner-*.svg    the header
     assets/activity-*.svg  weekly contribution chart for the last 12 months
     assets/collabs-*.svg   scrolling strip of brand collaboration logos
+    assets/footer-*.svg    the footer, with the halftone KASIF wordmark
 
 Needs fonttools + brotli (to measure text in the woff2 fonts) and Pillow (logo sizes).
 """
@@ -79,6 +80,7 @@ class Metrics:
         self.hmtx = font["hmtx"].metrics
         self.upem = font["head"].unitsPerEm
         self.space = self.hmtx[self.cmap[32]][0]
+        self.cap = getattr(font["OS/2"], "sCapHeight", 0) / self.upem or 0.72
 
     def width(self, text, size, ls=0.0, bold=1.0):
         units = sum(self.hmtx[self.cmap[ord(c)]][0] if ord(c) in self.cmap else self.space for c in text)
@@ -567,6 +569,98 @@ def activity(t, gh):
                     f"Current streak {cur} days, longest {longest} days, {active} active days, most active on {busiest}.")
 
 
+# ───────────────────────────── footer (the portfolio's halftone footer) ─────────────────────────────
+
+FOOTER = {
+    "columns": [("NAVIGATE", ["Work", "Recognition", "About", "Journey", "Services", "Contact", "Engineering notes"]),
+                ("SELECTED WORK", ["GitRoasted", "Cookie", "Shadow of the Crimson Gate", "Kerr Black Hole", "AI Checkers Arena", "Object Detection Suite"]),
+                ("CONNECT", ["X / Twitter", "GitHub", "Email me"])],
+    "roles": "AI Software Engineer · Backend Architect · Tech Content Creator",
+}
+
+
+def footer(t):
+    light = t["invert"]
+    ink = "#D42A25" if light else "#E5322D"
+    # the wordmark spans the width; its height sets how tall the footer is (20% of it is cropped off)
+    size = 520
+    ww = M["an"].width("KASIF", size, -0.055 * size)
+    size = round(size * (W - 24) / ww)
+    cap = size * M["an"].cap
+    top = 476
+    H = int(top + cap * 0.8)
+    d = Doc(t, H)
+    d.fonts |= {"an", "jk"}
+    # hairline across the top, brightest in the middle, and the red glow rising from the bottom
+    hl = d.uid("hair")
+    d.defs.append(f'<linearGradient id="{hl}"><stop offset="0" stop-color="{t["text"]}" stop-opacity="0"/>'
+                  f'<stop offset=".18" stop-color="{t["text"]}" stop-opacity=".12"/><stop offset=".5" stop-color="{t["red2"]}" stop-opacity=".65"/>'
+                  f'<stop offset=".82" stop-color="{t["text"]}" stop-opacity=".12"/><stop offset="1" stop-color="{t["text"]}" stop-opacity="0"/></linearGradient>')
+    d.add(glow(d, W / 2, H, 700, 420, .18 if not light else .12), f'<rect x="40" y="0" width="{W - 80}" height="1" fill="url(#{hl})"/>')
+
+    # brand column
+    brand = ['<clipPath id="flogo"><rect x="64" y="56" width="40" height="40" rx="20"/></clipPath>',
+             f'<image href="{asset("logo-mark.png", "image/png")}" x="64" y="56" width="40" height="40" clip-path="url(#flogo)"/>',
+             d.text(116, 85, "Md Kasif Uddin", 24, t["text"], weight=600, ls=-.4)]
+    for i, line in enumerate(wrap(FOOTER["roles"], 15, 300)):
+        brand.append(d.text(64, 130 + i * 24, line, 15, t["text2"]))
+    status = "OPEN TO WORK · AVAILABLE NOW"
+    sw = M["jk"].width(status, 11, 1.6, 1.07) + 48
+    brand.append(f'<rect x="64" y="174" width="{sw:.1f}" height="32" rx="16" fill="none" stroke="{t["line2"]}"/>'
+                 + pulse_dot(d, 84, 190, t["green"], 3.5)
+                 + d.text(98, 194, status, 11, t["text"], weight=700, ls=1.6))
+    d.add(f'<g class="a">{"".join(brand)}</g>')
+
+    # link columns
+    for i, (title, links) in enumerate(FOOTER["columns"]):
+        x = (448, 717, 985)[i]
+        col = [d.text(x, 74, title, 12, t["text2"], weight=700, ls=2.4)]
+        col += [d.text(x, 112 + j * 32, l, 15, t["muted"], weight=500) for j, l in enumerate(links)]
+        d.add(f'<g class="a" style="animation-delay:{.1 + i * .08:.2f}s">{"".join(col)}</g>')
+
+    # bottom rule: copyright, IST, reel button, back to top
+    ry = 372
+    meta = f"© {date.today().year} Md Kasif Uddin · India"
+    mw = M["jk"].width(meta, 13)
+    reel_x = 64 + mw + 64 + M["jk"].width("UTC+5:30", 13, bold=1.045) + 28
+    row = [f'<rect x="64" y="{ry}" width="{W - 128}" height="1" fill="{t["line"]}"/>',
+           d.text(64, ry + 54, meta, 13, t["muted"]),
+           f'<circle cx="{64 + mw + 24:.1f}" cy="{ry + 49.5}" r="4" fill="{t["red2"]}" class="pulse"/>',
+           d.text(64 + mw + 36, ry + 54, "IST", 13, t["text2"], weight=600),
+           d.text(64 + mw + 64, ry + 54, "UTC+5:30", 13, t["red2"], weight=600),
+           f'<rect x="{reel_x:.1f}" y="{ry + 28}" width="150" height="42" rx="21" fill="rgb({t["glow"]})" fill-opacity=".12" stroke="rgb({t["glow"]})" stroke-opacity=".45"/>',
+           f'<circle cx="{reel_x + 22:.1f}" cy="{ry + 49}" r="13" fill="{t["red2"]}"/><path d="M{reel_x + 18:.1f} {ry + 43}l9 6-9 6z" fill="#fff"/>',
+           d.text(reel_x + 44, ry + 54, "Play reel", 14, t["text"], weight=600)]
+    bt = "Back to top"
+    bw = M["jk"].width(bt, 13, bold=1.045) + 52
+    row.append(f'<rect x="{W - 64 - bw:.1f}" y="{ry + 30}" width="{bw:.1f}" height="38" rx="19" fill="none" stroke="{t["line2"]}"/>'
+               + d.text(W - 64 - bw + 18, ry + 54, bt, 13, t["text"], weight=600)
+               + f'<path d="M{W - 64 - 24:.1f} {ry + 55}v-11m-4.5 4.5 4.5-4.5 4.5 4.5" fill="none" stroke="{t["red2"]}" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>')
+    d.add(f'<g class="a" style="animation-delay:.3s">{"".join(row)}</g>')
+
+    # the halftone KASIF wordmark: dots masked by the letters, cropped at the bottom edge
+    ls = -0.055 * size
+    ww = M["an"].width("KASIF", size, ls)
+    x = (W - ww) / 2
+    base = top + cap
+    dots, mask, grad, sweep = d.uid("dots"), d.uid("wm"), d.uid("ink"), d.uid("sweep")
+    d.defs.append(f'<pattern id="{dots}" width="7" height="7" patternUnits="userSpaceOnUse"><circle cx="3.5" cy="3.5" r="2.4" fill="#fff"/></pattern>'
+                  f'<mask id="{mask}"><text x="{x:.1f}" y="{base:.1f}" font-size="{size}" class="an" letter-spacing="{ls:.1f}" fill="url(#{dots})">KASIF</text></mask>'
+                  f'<linearGradient id="{grad}" x1="0" y1="{top:.0f}" x2="0" y2="{H}" gradientUnits="userSpaceOnUse">'
+                  f'<stop offset="0" stop-color="{ink}"/><stop offset=".55" stop-color="{ink}" stop-opacity=".85"/>'
+                  f'<stop offset="1" stop-color="{ink}" stop-opacity="{.35 if not light else .45}"/></linearGradient>'
+                  f'<linearGradient id="{sweep}" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/>'
+                  f'<stop offset=".5" stop-color="#fff" stop-opacity="{.55 if not light else .7}"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>')
+    d.css.append(".sweep{animation:sweep 6s 1.2s ease-in-out infinite}@keyframes sweep{0%{transform:translateX(-420px)}45%,100%{transform:translateX(1700px)}}")
+    d.add(f'<g class="fade" style="animation-delay:.4s;animation-duration:1.6s" mask="url(#{mask})">'
+          f'<rect x="0" y="{top - 10:.0f}" width="{W}" height="{H - top + 10:.0f}" fill="url(#{grad})"/>'
+          f'<g class="sweep"><rect x="0" y="{top - 10:.0f}" width="320" height="{H - top + 10:.0f}" fill="url(#{sweep})" transform="skewX(-14)"/></g></g>')
+    return d.render("KASIF — footer",
+                    "Md Kasif Uddin, AI Software Engineer, Backend Architect and Tech Content Creator. Open to work, available now. "
+                    "Navigate: Work, Recognition, About, Journey, Services, Contact. Selected work: GitRoasted, Cookie, Shadow of the Crimson Gate, "
+                    "Kerr Black Hole, AI Checkers Arena, Object Detection Suite. Based in India (IST).")
+
+
 # ───────────────────────────── main ─────────────────────────────
 
 def main():
@@ -581,7 +675,7 @@ def main():
         with open(DATA) as f:
             gh = json.load(f)
     for name, theme in THEMES.items():
-        files = {"banner": banner(theme), "activity": activity(theme, gh), "collabs": collabs(theme)}
+        files = {"banner": banner(theme), "activity": activity(theme, gh), "collabs": collabs(theme), "footer": footer(theme)}
         for k, svg in files.items():
             with open(os.path.join(OUT, f"{k}-{name}.svg"), "w", encoding="utf-8") as f:
                 f.write(svg)

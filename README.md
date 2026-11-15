@@ -1,4 +1,4 @@
-<!-- Header, activity chart and logo strip are built by generate_readme_svgs.py and refreshed daily by .github/workflows/generate-svgs.yml -->
+<!-- Header, activity chart, logo strip and footer are built by generate_readme_svgs.py and refreshed daily by .github/workflows/generate-svgs.yml -->
 
 <a href="https://kasif-portfolio.netlify.app">
   <picture>
@@ -180,4 +180,9 @@ Have a product idea, a collaboration or a hackathon team that needs a backend?
   <a href="https://www.instagram.com/M_Kasif_Uddin/"><img alt="Instagram" src="https://img.shields.io/badge/Instagram-05050A?style=for-the-badge&logo=instagram&logoColor=F2503E"></a>
 </p>
 
-<img width="100%" alt="" src="https://capsule-render.vercel.app/api?type=waving&color=0:05050A,60:5C1A18,100:E5322D&height=110&section=footer">
+<a href="https://kasif-portfolio.netlify.app">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/MdKasif0/MdKasif0/main/assets/footer-dark.svg">
+    <img width="100%" alt="KASIF footer: Md Kasif Uddin, AI Software Engineer, Backend Architect and Tech Content Creator. Open to work, available now." src="https://raw.githubusercontent.com/MdKasif0/MdKasif0/main/assets/footer-light.svg">
+  </picture>
+</a>
