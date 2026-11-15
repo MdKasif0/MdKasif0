@@ -180,6 +180,6 @@ Have a product idea, a collaboration or a hackathon team that needs a backend?
 <a href="https://kasif-portfolio.netlify.app">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/MdKasif0/MdKasif0/main/assets/footer-dark.svg">
-    <img width="100%" alt="KASIF footer: Md Kasif Uddin, AI Software Engineer, Backend Architect and Tech Content Creator. Open to work, available now." src="https://raw.githubusercontent.com/MdKasif0/MdKasif0/main/assets/footer-light.svg">
+    <img width="100%" alt="KASIF" src="https://raw.githubusercontent.com/MdKasif0/MdKasif0/main/assets/footer-light.svg">
   </picture>
 </a>
