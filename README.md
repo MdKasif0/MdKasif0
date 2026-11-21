@@ -35,6 +35,58 @@ const kasif = {
 };
 ```
 
+## 🛠️ Tech stack
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/MdKasif0/MdKasif0/main/assets/stack-dark.svg">
+  <img width="100%" alt="The stack, 28 tools in daily use: TypeScript, JavaScript, Python, Swift, Node.js, Supabase, Firebase, PostgreSQL, MongoDB, TensorFlow, OpenCV, OpenAI, Gemini, Hugging Face, Groq, OpenRouter, React, Next.js, Tailwind CSS, Three.js, Blender, Git, Docker, Figma, Netlify, n8n, Cursor and Claude Code." src="https://raw.githubusercontent.com/MdKasif0/MdKasif0/main/assets/stack-light.svg">
+</picture>
+
+## 📊 GitHub stats
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats-sigma-rosy-28.vercel.app/api?username=MdKasif0&show_icons=true&count_private=true&include_all_commits=true&rank_icon=github&hide_border=true&border_radius=12&bg_color=05050A&title_color=F2503E&icon_color=E5322D&text_color=C4C3CC&ring_color=E5322D&card_width=480">
+    <img width="49%" alt="GitHub stats" src="https://github-readme-stats-sigma-rosy-28.vercel.app/api?username=MdKasif0&show_icons=true&count_private=true&include_all_commits=true&rank_icon=github&hide_border=true&border_radius=12&bg_color=EEEBE5&title_color=E3211C&icon_color=E3211C&text_color=434245&ring_color=E3211C&card_width=480">
+  </picture>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats-sigma-rosy-28.vercel.app/api/top-langs/?username=MdKasif0&layout=compact&langs_count=8&hide_border=true&border_radius=12&bg_color=05050A&title_color=F2503E&text_color=C4C3CC&card_width=480">
+    <img width="49%" alt="Most used languages" src="https://github-readme-stats-sigma-rosy-28.vercel.app/api/top-langs/?username=MdKasif0&layout=compact&langs_count=8&hide_border=true&border_radius=12&bg_color=EEEBE5&title_color=E3211C&text_color=434245&card_width=480">
+  </picture>
+</p>
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://streak-stats.demolab.com/?user=MdKasif0&hide_border=true&border_radius=12&card_width=980&background=05050A&stroke=2A2A33&ring=E5322D&fire=F2503E&currStreakNum=F5F5F5&sideNums=F5F5F5&currStreakLabel=F2503E&sideLabels=C4C3CC&dates=8C8C9A">
+    <img width="99%" alt="GitHub streak" src="https://streak-stats.demolab.com/?user=MdKasif0&hide_border=true&border_radius=12&card_width=980&background=EEEBE5&stroke=D6D2CB&ring=E3211C&fire=F13E2A&currStreakNum=1C1B20&sideNums=1C1B20&currStreakLabel=E3211C&sideLabels=434245&dates=787677">
+  </picture>
+</p>
+
+<a href="https://github.com/MdKasif0">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/MdKasif0/MdKasif0/main/assets/activity-dark.svg">
+    <img width="100%" alt="Weekly GitHub contributions over the last 12 months, with best day, streaks and active days" src="https://raw.githubusercontent.com/MdKasif0/MdKasif0/main/assets/activity-light.svg">
+  </picture>
+</a>
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=MdKasif0&theme=default&bg_color=05050A&title_color=F2503E&text_color=C4C3CC&icon_color=E5322D&border_color=05050A">
+    <img width="49%" alt="Top languages by commit" src="https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=MdKasif0&theme=default&bg_color=EEEBE5&title_color=E3211C&text_color=434245&icon_color=E3211C&border_color=EEEBE5">
+  </picture>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://github-profile-summary-cards.vercel.app/api/cards/productive-time?username=MdKasif0&theme=default&utcOffset=5.5&bg_color=05050A&title_color=F2503E&text_color=C4C3CC&icon_color=E5322D&chart_color=E5322D&border_color=05050A">
+    <img width="49%" alt="Commits by time of day (IST)" src="https://github-profile-summary-cards.vercel.app/api/cards/productive-time?username=MdKasif0&theme=default&utcOffset=5.5&bg_color=EEEBE5&title_color=E3211C&text_color=434245&icon_color=E3211C&chart_color=E3211C&border_color=EEEBE5">
+  </picture>
+</p>
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/MdKasif0/MdKasif0/output/snake-dark.svg">
+    <img width="100%" alt="A snake eating my GitHub contribution graph" src="https://raw.githubusercontent.com/MdKasif0/MdKasif0/output/snake-light.svg">
+  </picture>
+</p>
+
 ## 🚀 Featured projects
 
 <table>
@@ -89,58 +141,6 @@ const kasif = {
 </table>
 
 <p align="right"><a href="https://github.com/MdKasif0?tab=repositories"><b>See all repositories →</b></a></p>
-
-## 🛠️ Tech stack
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/MdKasif0/MdKasif0/main/assets/stack-dark.svg">
-  <img width="100%" alt="The stack, 28 tools in daily use: TypeScript, JavaScript, Python, Swift, Node.js, Supabase, Firebase, PostgreSQL, MongoDB, TensorFlow, OpenCV, OpenAI, Gemini, Hugging Face, Groq, OpenRouter, React, Next.js, Tailwind CSS, Three.js, Blender, Git, Docker, Figma, Netlify, n8n, Cursor and Claude Code." src="https://raw.githubusercontent.com/MdKasif0/MdKasif0/main/assets/stack-light.svg">
-</picture>
-
-## 📊 GitHub stats
-
-<p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats-sigma-rosy-28.vercel.app/api?username=MdKasif0&show_icons=true&count_private=true&include_all_commits=true&rank_icon=github&hide_border=true&border_radius=12&bg_color=05050A&title_color=F2503E&icon_color=E5322D&text_color=C4C3CC&ring_color=E5322D&card_width=480">
-    <img width="49%" alt="GitHub stats" src="https://github-readme-stats-sigma-rosy-28.vercel.app/api?username=MdKasif0&show_icons=true&count_private=true&include_all_commits=true&rank_icon=github&hide_border=true&border_radius=12&bg_color=EEEBE5&title_color=E3211C&icon_color=E3211C&text_color=434245&ring_color=E3211C&card_width=480">
-  </picture>
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats-sigma-rosy-28.vercel.app/api/top-langs/?username=MdKasif0&layout=compact&langs_count=8&hide_border=true&border_radius=12&bg_color=05050A&title_color=F2503E&text_color=C4C3CC&card_width=480">
-    <img width="49%" alt="Most used languages" src="https://github-readme-stats-sigma-rosy-28.vercel.app/api/top-langs/?username=MdKasif0&layout=compact&langs_count=8&hide_border=true&border_radius=12&bg_color=EEEBE5&title_color=E3211C&text_color=434245&card_width=480">
-  </picture>
-</p>
-
-<p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://streak-stats.demolab.com/?user=MdKasif0&hide_border=true&border_radius=12&card_width=980&background=05050A&stroke=2A2A33&ring=E5322D&fire=F2503E&currStreakNum=F5F5F5&sideNums=F5F5F5&currStreakLabel=F2503E&sideLabels=C4C3CC&dates=8C8C9A">
-    <img width="99%" alt="GitHub streak" src="https://streak-stats.demolab.com/?user=MdKasif0&hide_border=true&border_radius=12&card_width=980&background=EEEBE5&stroke=D6D2CB&ring=E3211C&fire=F13E2A&currStreakNum=1C1B20&sideNums=1C1B20&currStreakLabel=E3211C&sideLabels=434245&dates=787677">
-  </picture>
-</p>
-
-<a href="https://github.com/MdKasif0">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/MdKasif0/MdKasif0/main/assets/activity-dark.svg">
-    <img width="100%" alt="Weekly GitHub contributions over the last 12 months, with best day, streaks and active days" src="https://raw.githubusercontent.com/MdKasif0/MdKasif0/main/assets/activity-light.svg">
-  </picture>
-</a>
-
-<p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=MdKasif0&theme=default&bg_color=05050A&title_color=F2503E&text_color=C4C3CC&icon_color=E5322D&border_color=05050A">
-    <img width="49%" alt="Top languages by commit" src="https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=MdKasif0&theme=default&bg_color=EEEBE5&title_color=E3211C&text_color=434245&icon_color=E3211C&border_color=EEEBE5">
-  </picture>
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://github-profile-summary-cards.vercel.app/api/cards/productive-time?username=MdKasif0&theme=default&utcOffset=5.5&bg_color=05050A&title_color=F2503E&text_color=C4C3CC&icon_color=E5322D&chart_color=E5322D&border_color=05050A">
-    <img width="49%" alt="Commits by time of day (IST)" src="https://github-profile-summary-cards.vercel.app/api/cards/productive-time?username=MdKasif0&theme=default&utcOffset=5.5&bg_color=EEEBE5&title_color=E3211C&text_color=434245&icon_color=E3211C&chart_color=E3211C&border_color=EEEBE5">
-  </picture>
-</p>
-
-<p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/MdKasif0/MdKasif0/output/snake-dark.svg">
-    <img width="100%" alt="A snake eating my GitHub contribution graph" src="https://raw.githubusercontent.com/MdKasif0/MdKasif0/output/snake-light.svg">
-  </picture>
-</p>
 
 ## 🏆 Recognition & collaborations
 
